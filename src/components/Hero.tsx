@@ -40,7 +40,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-accent font-semibold">Full-Stack Developer</span> & 
+            <span className="text-accent font-semibold">Software Developer</span> & 
             <span className="text-primary font-semibold"> Manual | Automation Tester</span>
             <br />
             

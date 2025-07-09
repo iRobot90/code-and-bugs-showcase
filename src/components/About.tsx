@@ -6,7 +6,7 @@ const About = () => {
   const skills = [
     {
       category: "Frontend",
-      items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Bootstrap", "React+Vite"],
+      items: ["Next.js", "React", "Tailwind CSS", "Bootstrap", "React+Vite"],
       icon: <Code2 className="w-6 h-6" />
     },
     {
@@ -25,13 +25,11 @@ const About = () => {
     { name: "Gaming", icon: <Gamepad2 className="w-5 h-5" />, description: "Major passion!" },
     { name: "Cycling", icon: <Bike className="w-5 h-5" />, description: "Weekend adventures" },
     { name: "Movies", icon: <Film className="w-5 h-5" />, description: "Cinema enthusiast" },
-    { name: "Travel", icon: <Mountain className="w-5 h-5" />, description: "Exploring the world" }
+    { name: "Travel", icon: <Mountain className="w-5 h-5" />, description: "Exploring the world (weeeeel...Mombasa)" }
   ];
 
   const funTitles = [
     "404 Not Found? I Found It.",
-    "Certified Bug Whisperer",
-    "Debugger of Doom",
     "Code Quality Guardian"
   ];
 
@@ -49,7 +47,7 @@ const About = () => {
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A meticulous tester and creative full-stack developer with a passion for building robust, 
+            A meticulous tester and creative software developer with a passion for building robust, 
             user-friendly applications. I believe great software comes from understanding both how to break it and how to build it right.
           </p>
         </motion.div>
@@ -62,7 +60,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <GlassCard>
-              <h3 className="text-2xl font-bold text-primary mb-6">Fun Titles</h3>
+              <h3 className="text-2xl font-bold text-primary mb-6">Fun Puns</h3>
               <div className="space-y-3">
                 {funTitles.map((title, index) => (
                   <motion.div

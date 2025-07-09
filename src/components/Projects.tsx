@@ -8,8 +8,8 @@ const Projects = () => {
     {
       name: "AIRS",
       status: "Live",
-      client: "Fintech Platform",
-      description: "Automated Incentives for Regenerative Stewardship - A fintech platform designed to reward communities for environmental restoration and regenerative practices. Combines impact tracking with digital incentives.",
+      client: "Green World Campaign",
+      description: " A Fintech Platform for Automated Incentives for Regenerative Stewardship - A fintech platform designed to reward communities for environmental restoration and regenerative practices. Combines impact tracking with digital incentives.",
       tech: ["React", "Vite", "Django"],
       liveLink: "https://airsgreenworld.com",
       dashboardLink: "https://app.airsgreenworld.com",
