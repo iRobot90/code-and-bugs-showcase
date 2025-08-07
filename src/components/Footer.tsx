@@ -84,7 +84,7 @@ const Footer = () => {
               © 2024 Developer & Test Engineer. Built with React, TypeScript, and lots of ☕
             </p>
             <p className="text-muted-foreground text-xs mt-1 font-mono">
-              No bugs were harmed in the making of this website... probably.
+              No bugs were harmed in the making of this website... probably.Tr#h673@8oAA7
             </p>
           </motion.div>
         </motion.div>
