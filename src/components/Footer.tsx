@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Instagram, Twitter, Linkedin, Mail, Bug } from "lucide-react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   const socialLinks = [
     {
       name: "Instagram",
@@ -15,7 +17,7 @@ const Footer = () => {
       icon: <Twitter className="w-5 h-5" />,
       url: "#", 
       color: "hover:text-blue-400"
-    },
+    },                                                      
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
@@ -81,11 +83,11 @@ const Footer = () => {
             className="border-t border-border/20 pt-8"
           >
             <p className="text-muted-foreground text-sm">
-              © 2024 Developer & Test Engineer. Built with React, TypeScript, and lots of ☕
+              © {currentYear} Developer & Test Engineer. Built with React, TypeScript, and lots of ☕
             </p>
             <p className="text-muted-foreground text-xs mt-1 font-mono">
-              No bugs were harmed in the making of this website... probably.Tr#h673@8oAA7
-            </p>
+              No bugs were harmed in the making of this website... probably.
+            </p>                      
           </motion.div>
         </motion.div>
       </div>
