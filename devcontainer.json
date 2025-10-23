@@ -1,0 +1,17 @@
+{
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "iRobot90/code-and-bugs-showcase": {
+          "permissions": {
+            "issues": "write",
+            "contents": "read"
+          }
+        },
+        "my_org/another_repo": {
+          "permissions": "write-all"
+        }
+      }
+    }
+  }
+}
