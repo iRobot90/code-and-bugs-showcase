@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jesseamiandah-dev.vercel.app/sitemap.xml
