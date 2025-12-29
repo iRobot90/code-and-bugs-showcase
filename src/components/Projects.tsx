@@ -6,10 +6,19 @@ import { ExternalLink, Github, Play, Clock, User } from "lucide-react";
 const Projects = () => {
   const clientProjects = [
     {
+      name: "Team Task Management System",
+      status: "Live",
+      client: "ZNG COMPANY",
+      description: "Keeps the ZNG squad sane. Assign tasks, track progress, and stop the chaos. Powered by Next.js and Django.",
+      tech: ["Next.js", "Django", "Tailwind CSS"],
+      liveLink: "https://jesse-test.zng.dk/",
+      repoLink: "https://github.com/iRobot90/team-task-management-system"
+    },
+    {
       name: "AIRS",
       status: "Live",
       client: "Green World Campaign",
-      description: " A Fintech Platform for Automated Incentives for Regenerative Stewardship - A fintech platform designed to reward communities for environmental restoration and regenerative practices. Combines impact tracking with digital incentives.",
+      description: "Fintech meets eco-warriors. Use financial incentives to save the planet? You bet. Tracking impact and rewarding good vibes.",
       tech: ["React", "Vite", "Django"],
       liveLink: "https://airsgreenworld.com",
       dashboardLink: "https://app.airsgreenworld.com",
@@ -17,9 +26,9 @@ const Projects = () => {
     },
     {
       name: "SPH Website",
-      status: "Live", 
+      status: "Live",
       client: "Swahilipot Hub Foundation",
-      description: "Official site for Swahilipot Hub Foundation, an NGO focused on youth, culture, and tech innovation.",
+      description: "The digital face of Swahilipot Hub. Culture, tech, and youth all in one place. It's the hub, literally.",
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#"
@@ -28,7 +37,7 @@ const Projects = () => {
       name: "SPHFM",
       status: "Live",
       client: "Swahilipot Hub Foundation",
-      description: "A vibrant digital platform for Swahilipot's radio station with embedded streaming integrations.",
+      description: "Radio for the digital age. Streaming beats and good talk directly to your device.",
       tech: ["React+Vite", "Tailwind CSS"],
       liveLink: "https://www.swahilipotfm.co.ke",
       repoLink: "#"
@@ -37,7 +46,7 @@ const Projects = () => {
       name: "PIW",
       status: "Live",
       client: "Swahilipot Hub Foundation",
-      description: "Pwani Innovation Week - Annual innovation event site for registration, program highlights, and regional tech entrepreneurship.",
+      description: "Pwani Innovation Week's digital home. Where innovators meet, greet, and compete.",
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#"
@@ -46,9 +55,17 @@ const Projects = () => {
 
   const personalProjects = [
     {
+      name: "Twanababyshop",
+      status: "In Progress",
+      description: "E-commerce for the little ones. Not deployed yet, but the code is looking fresh.",
+      tech: ["React", "Django"],
+      liveLink: "https://github.com/iRobot90/twanababyshop",
+      repoLink: "https://github.com/iRobot90/twanababyshop"
+    },
+    {
       name: "Afrikart",
       status: "In Progress",
-      description: "🛒 A culturally rooted e-commerce concept focused on independent African creators and sustainable goods.",
+      description: "Cultural e-commerce. Connecting independent African creators with the world. Authentic goods only.",
       tech: ["TypeScript", "Supabase"],
       liveLink: null,
       repoLink: "#"
@@ -56,7 +73,7 @@ const Projects = () => {
     {
       name: "Rental System",
       status: "In Progress",
-      description: "A tool to manage local rental units, tenant tracking, and digital payments. Built for landlords and community rentals.",
+      description: "For landlords who hate spreadsheets. Manage units, tenants, and payments without the headache.",
       tech: ["Django", "Bootstrap", "SQLite", "PostgreSQL"],
       liveLink: null,
       repoLink: "#"
@@ -64,7 +81,7 @@ const Projects = () => {
     {
       name: "Waste KIKI",
       status: "In Progress",
-      description: "♻️ Community-based waste tracking and reward system. Promotes smart waste segregation and gamified collection points.",
+      description: "Gamifying trash? Yes. Earn rewards for recycling. Clean streets, happy people.",
       tech: ["Django REST API", "Vue/React", "Gamification"],
       liveLink: null,
       repoLink: "#"
@@ -77,11 +94,10 @@ const Projects = () => {
         <div>
           <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
           <div className="flex items-center gap-2 mb-2">
-            <div className={`px-2 py-1 rounded-full text-xs font-mono ${
-              project.status === 'Live' 
-                ? 'bg-accent/20 text-accent' 
-                : 'bg-primary/20 text-primary'
-            }`}>
+            <div className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === 'Live'
+              ? 'bg-accent/20 text-accent'
+              : 'bg-primary/20 text-primary'
+              }`}>
               {project.status === 'Live' ? (
                 <div className="flex items-center gap-1">
                   <Play className="w-3 h-3" />

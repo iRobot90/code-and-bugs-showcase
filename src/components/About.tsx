@@ -10,7 +10,7 @@ const About = () => {
       icon: <Code2 className="w-6 h-6" />
     },
     {
-      category: "Backend", 
+      category: "Backend",
       items: ["Python", "Django", "Node.js", "PostgreSQL"],
       icon: <Code2 className="w-6 h-6" />
     },
@@ -47,8 +47,7 @@ const About = () => {
             About Me
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A meticulous tester and creative software developer with a passion for building robust, 
-            user-friendly applications. I believe great software comes from understanding both how to break it and how to build it right.
+            Sup? I'm Jesse Amiandah Andayi. I'm a Software Developer and Frontend Engineer who messes around with Django, React, and Next.js. I believe in breaking things to see how they work, then putting them back together better than before.
           </p>
         </motion.div>
 
