@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <ParticleBackground />
-      
+
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -30,20 +30,21 @@ const Hero = () => {
             transition={{ delay: 0.2 }}
           >
             <Bug className="w-5 h-5 animate-bounce" />
-            <span>System.out.println("Hello, World!");</span>
+            <span>yo, i'm jesse.</span>
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight">
-            I break it,
+            I break stuff,
             <br />
-            then build it better.
+            then make it awesome.
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-accent font-semibold">Software Developer</span> & 
-            <span className="text-primary font-semibold"> Manual | Automation Tester</span>
+            <span className="text-accent font-semibold">Software Developer</span>,
+            <span className="text-primary font-semibold"> Frontend Engineer</span> &
+            <span className="text-accent font-semibold"> Fullstack (Django, React, Next.js)</span>
             <br />
-            
+            Just a guy building cool things on the internet.
           </p>
 
           <motion.div

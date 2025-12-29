@@ -15,14 +15,20 @@ const Footer = () => {
     {
       name: "Twitter",
       icon: <Twitter className="w-5 h-5" />,
-      url: "#", 
+      url: "#",
       color: "hover:text-blue-400"
-    },                                                      
+    },
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
       url: "https://www.linkedin.com/in/jesse-amiandah/",
       color: "hover:text-blue-600"
+    },
+    {
+      name: "Medium",
+      icon: <span className="font-serif font-bold text-lg">M</span>,
+      url: "https://medium.com/@amiandah8",
+      color: "hover:text-foreground"
     },
     {
       name: "Email",
@@ -83,11 +89,11 @@ const Footer = () => {
             className="border-t border-border/20 pt-8"
           >
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Developer & Test Engineer. Built with React, TypeScript, and lots of ☕
+              © {currentYear} Jesse Amiandah Andayi. Built with React, TypeScript, and lots of ☕
             </p>
             <p className="text-muted-foreground text-xs mt-1 font-mono">
               No bugs were harmed in the making of this website... probably.
-            </p>                      
+            </p>
           </motion.div>
         </motion.div>
       </div>
