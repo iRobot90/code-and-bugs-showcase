@@ -31,6 +31,18 @@ const Footer = () => {
       color: "hover:text-foreground"
     },
     {
+      name: "WakaTime",
+      icon: <span className="font-mono font-bold text-sm">WT</span>,
+      url: "https://wakatime.com/@web_weaver",
+      color: "hover:text-blue-400"
+    },
+    {
+      name: "Wonderful.dev",
+      icon: <span className="font-mono font-bold text-sm">W</span>,
+      url: "https://wonderful.dev/webweaver",
+      color: "hover:text-purple-400"
+    },
+    {
       name: "Email",
       icon: <Mail className="w-5 h-5" />,
       url: "mailto:amiandah8@gmail.com",
