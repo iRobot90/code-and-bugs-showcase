@@ -87,7 +87,7 @@ const CTA = () => {
                         viewport={{ once: true }}
                         className="text-sm text-muted-foreground mt-6 font-mono"
                     >
-                        💬 Usually reply within 24 hours
+                        Usually reply within 24 hours
                     </motion.p>
                 </motion.div>
             </div>

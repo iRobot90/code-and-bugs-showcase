@@ -9,21 +9,21 @@ const Testimonials = () => {
             role: "Project Lead, AIRS Platform",
             content: "Jesse delivered a complex fintech platform that exceeded our expectations. The integration of impact tracking with digital incentives was seamless.",
             rating: 5,
-            image: "🌍"
+            initials: "GWC"
         },
         {
             name: "Swahilipot Hub Foundation",
             role: "Tech Director",
             content: "Working with Jesse on multiple projects has been fantastic. From our main website to SPHFM radio platform, everything was delivered on time and with excellent quality.",
             rating: 5,
-            image: "🎯"
+            initials: "SPH"
         },
         {
             name: "ZNG Company",
             role: "Operations Manager",
             content: "The task management system Jesse built transformed how our team collaborates. It's intuitive, fast, and exactly what we needed.",
             rating: 5,
-            image: "⚡"
+            initials: "ZNG"
         }
     ];
 
@@ -68,8 +68,8 @@ const Testimonials = () => {
                                 </p>
 
                                 <div className="flex items-center gap-3 mt-auto">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-2xl">
-                                        {testimonial.image}
+                                    <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-sm font-bold text-background">
+                                        {testimonial.initials}
                                     </div>
                                     <div>
                                         <p className="font-semibold text-foreground">{testimonial.name}</p>
