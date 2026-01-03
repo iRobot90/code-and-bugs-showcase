@@ -1,11 +1,42 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Send } from "lucide-react";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const CTA = () => {
-    const scrollToContact = () => {
-        document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Simulate sending
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+        setIsOpen(false);
+        setIsSubmitting(false);
     };
+
+
 
     return (
         <section className="py-20 px-6 relative overflow-hidden">
@@ -64,19 +95,71 @@ const CTA = () => {
                     >
                         <Button
                             size="lg"
-                            onClick={scrollToContact}
+                            onClick={() => setIsOpen(true)}
                             className="bg-gradient-primary hover:shadow-glow transition-all duration-300 group"
                         >
                             Start a Conversation
                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
+
+                        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Let's Chat!</DialogTitle>
+                                    <DialogDescription>
+                                        Fill out the form below and I'll get back to you within 24 hours.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="name">Name</Label>
+                                        <Input
+                                            id="name"
+                                            placeholder="John Doe"
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email">Email</Label>
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            placeholder="john@example.com"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="message">Message</Label>
+                                        <Textarea
+                                            id="message"
+                                            placeholder="Tell me about your project..."
+                                            value={formData.message}
+                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                            required
+                                            className="min-h-[100px]"
+                                        />
+                                    </div>
+                                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                                        {isSubmitting ? "Sending..." : "Send Message"}
+                                        <Send className="w-4 h-4 ml-2" />
+                                    </Button>
+                                </form>
+                            </DialogContent>
+                        </Dialog>
+
                         <Button
                             size="lg"
                             variant="outline"
-                            onClick={() => window.open('mailto:amiandah8@gmail.com', '_blank')}
                             className="border-primary/30 hover:bg-primary/10 hover:border-primary"
+                            asChild
                         >
-                            Send Email Directly
+                            <a href="mailto:amiandah8@gmail.com">
+                                Send Email Directly
+                            </a>
                         </Button>
                     </motion.div>
 
