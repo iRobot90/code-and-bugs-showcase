@@ -7,9 +7,7 @@ const CTA = () => {
     // subtle sparkle will animate below the heading
     return (
         <section className="py-20 px-6 relative overflow-hidden">
-            {/* Animated background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 animate-gradient" />
-            <div className="absolute inset-0 backdrop-blur-3xl" />
+            {/* Minimal background: no gradients or heavy blur for a cleaner look */}
 
             <div className="max-w-4xl mx-auto relative z-10">
                 <motion.div
@@ -17,7 +15,7 @@ const CTA = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center relative overflow-hidden group p-6"
+                    className="text-center p-12"
                 >
 
                     <motion.div
@@ -45,16 +43,10 @@ const CTA = () => {
                         Got a project in mind?
                     </motion.h2>
 
-                    {/* Subtle sparkle animation using Framer Motion */}
-                    <motion.div
-                        aria-hidden
-                        initial={{ opacity: 0, y: 6, scale: 0.9 }}
-                        animate={{ opacity: [0, 0.9, 0.4], y: [6, 0, -4], scale: [0.9, 1.05, 0.95] }}
-                        transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                        className="flex justify-center mt-2 text-primary/80"
-                    >
-                        <Sparkles className="w-5 h-5" />
-                    </motion.div>
+                    {/* Subtle sparkle using Tailwind pulse, respects reduced motion */}
+                    <div className="flex justify-center mt-2 text-primary/80" aria-hidden>
+                        <Sparkles className="w-5 h-5 motion-safe:animate-pulse motion-reduce:opacity-100" />
+                    </div>
 
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -63,7 +55,7 @@ const CTA = () => {
                         viewport={{ once: true }}
                         className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
                     >
-                        Let's turn your ideas into reality. Whether it's building from scratch or fixing what's broken, I'm here to help. I also offer freelance data annotation and AI training support, with hands-on experience on AI trainer platforms — dataset labeling, annotation workflows, quality assurance, and tooling to help fine-tune models.
+                        Let's turn your ideas into reality. Whether it is building from scratch or fixing what is broken, I am here to help. I offer freelance data annotation and trainer platform support. Services include dataset labeling, annotation workflows, quality assurance and platform tooling to help fine tune models.
                     </motion.p>
 
                     <motion.div
