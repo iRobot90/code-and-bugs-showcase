@@ -1,9 +1,15 @@
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
-import { TestTube, Code, FileText, Zap, Shield, Rocket } from "lucide-react";
+import { TestTube, Code, FileText, Zap, Shield, Rocket, Layers } from "lucide-react";
 
 const Services = () => {
   const services = [
+    {
+      title: "Data Annotation & Model Training",
+      description: "High quality dataset labeling and trainer platform support",
+      icon: <Layers className="w-8 h-8" />,
+      features: ["Dataset labeling", "Annotation workflows", "Quality assurance", "Tooling and platform integration"]
+    },
     {
       title: "Manual Testing",
       description: "Comprehensive testing across usability, functionality, and user experience",
