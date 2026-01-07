@@ -1,105 +1,105 @@
+import React from "react";
 import { motion } from "framer-motion";
-import GlassCard from "./GlassCard";
-import { TestTube, Code, FileText, Zap, Shield, Rocket, Layers } from "lucide-react";
+import { Layers } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Services = () => {
-  const services = [
-    {
-      title: "Data Annotation & Model Training",
-      description: "High quality dataset labeling and trainer platform support",
-      icon: <Layers className="w-8 h-8" />,
-      features: ["Dataset labeling", "Annotation workflows", "Quality assurance", "Tooling and platform integration"]
-    },
-    {
-      title: "Manual Testing",
-      description: "Comprehensive testing across usability, functionality, and user experience",
-      icon: <TestTube className="w-8 h-8" />,
-      features: ["Usability Testing", "API Testing", "Voice Testing", "Streaming Testing", "Localization", "Regression Testing"]
-    },
-    {
-      title: "Test Automation",
-      description: "Building robust automated test suites for efficient continuous testing",
-      icon: <Zap className="w-8 h-8" />,
-      features: ["E2E Automation", "API Test Automation", "Performance Testing", "CI/CD Integration"]
-    },
-    {
-      title: "Full-Stack Development",
-      description: "Creating scalable web applications with modern technologies",
-      icon: <Code className="w-8 h-8" />,
-      features: ["Next.js & React", "Python & Django", "Database Design", "API Development"]
-    },
-    {
-      title: "Quality Assurance",
-      description: "Ensuring your applications meet the highest standards of quality",
-      icon: <Shield className="w-8 h-8" />,
-      features: ["Test Strategy", "Quality Metrics", "Bug Tracking", "Process Improvement"]
-    },
-    {
-      title: "Technical Writing",
-      description: "Clear documentation and technical communication",
-      icon: <FileText className="w-8 h-8" />,
-      features: ["API Documentation", "Test Plans", "User Guides", "Technical Specs"]
-    },
-    {
-      title: "Performance Optimization",
-      description: "Optimizing applications for speed, reliability, and scalability",
-      icon: <Rocket className="w-8 h-8" />,
-      features: ["Load Testing", "Code Optimization", "Database Tuning", "Monitoring Setup"]
-    }
-  ];
+    const featured = [
+        {
+            title: "Full Stack Engineering",
+            description: "End to end web application delivery focused on product outcomes. Expertise with Next.js, React and Django plus API and database design.",
+            icon: Layers,
+        },
+        {
+            title: "Data annotation and trainer platform support",
+            description: "Dataset labeling, annotation workflows, quality assurance and platform tooling to prepare data for training and fine tune systems.",
+            icon: Layers,
+        },
+    ];
 
-  return (
-    <section className="py-20 px-6" id="services">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            Services
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From breaking your application to building it stronger. I offer comprehensive testing and development services 
-            to ensure your software is robust, scalable, and user-friendly.
-          </p>
-        </motion.div>
+    const otherServices = [
+        "Technical writing and docs",
+        "Performance tuning and observability",
+        "Maintenance and support"
+    ];
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <GlassCard className="h-full hover:scale-105 transition-transform duration-300">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-full text-background mb-4">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
+    return (
+        <section className="py-16 px-6" id="services">
+            <div className="max-w-5xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                        Services
+                    </h2>
+                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        Focused services that help teams ship and maintain high quality products. Featured work highlights full stack engineering with Next.js and Django alongside dataset and platform support for training workflows.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {featured.map((s) => {
+                        const Icon = s.icon;
+                        return (
+                            <div key={s.title} className="border rounded-md p-6 bg-transparent">
+                                <div className="flex items-start gap-3">
+                                    <Icon className="w-6 h-6 text-primary mt-1" />
+                                    <div className="flex-1">
+                                        <h3 className="text-lg font-semibold text-foreground">{s.title}</h3>
+                                        <p className="text-sm text-muted-foreground mt-2">{s.description}</p>
+
+                                        <div className="mt-4 flex flex-wrap gap-2">
+                                            <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Next.js</span>
+                                            <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Django</span>
+                                            <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">TypeScript</span>
+                                            <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">React</span>
+                                        </div>
+
+                                        <div className="mt-4 flex gap-3">
+                                            <Button size="sm" className="bg-primary text-white" asChild>
+                                                <a href="/#projects">View projects</a>
+                                            </Button>
+                                            <Button size="sm" variant="outline" asChild>
+                                                <a href="https://www.linkedin.com/in/jesse-amiandah/" target="_blank" rel="noopener noreferrer">Hire me</a>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
-                
-                <div className="space-y-2">
-                  {service.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                      <span className="text-sm text-foreground font-mono">{feature}</span>
+
+                <div className="mt-8">
+                    <h4 className="text-sm font-medium text-foreground mb-2">Other services</h4>
+                    <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+                        {otherServices.map((o) => (
+                            <li key={o}>{o}</li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="mt-12 border rounded-md p-6 bg-transparent">
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Trust and results</h4>
+                    <p className="text-sm text-muted-foreground">
+                        I focus on measurable outcomes. Typical engagements include delivering a production feature, improving performance, or preparing curated data that speeds up training and evaluation. Case studies and references available on request.
+                    </p>
+                    <div className="mt-4 flex gap-3">
+                        <Button size="sm" className="bg-primary text-white" asChild>
+                            <a href="/#projects">See featured projects</a>
+                        </Button>
+                        <Button size="sm" variant="outline" asChild>
+                            <a href="mailto:jesse.amianda@chrisdevcode.com">Email to hire</a>
+                        </Button>
                     </div>
-                  ))}
                 </div>
-              </GlassCard>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 };
 
 export default Services;
