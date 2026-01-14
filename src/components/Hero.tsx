@@ -5,11 +5,11 @@ import ParticleBackground from "./ParticleBackground";
 
 const Hero = () => {
   const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToContact = () => {
-    document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -34,17 +34,24 @@ const Hero = () => {
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent leading-tight">
-            I break stuff,
+            I hunt bugs,
             <br />
-            then make it awesome.
+            then craft solutions.
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            <span className="text-accent font-semibold">Software Developer</span>,
-            <span className="text-primary font-semibold"> Frontend Engineer</span> &
-            <span className="text-accent font-semibold"> Fullstack (Django, React, Next.js)</span>
+            <span className="text-accent font-semibold">
+              Software Developer
+            </span>
+            ,
+            <span className="text-primary font-semibold">
+              {" "}
+              Frontend Engineer
+            </span>{" "}
+            &<span className="text-accent font-semibold"> QA Specialist</span>
             <br />
-            Just a guy building cool things on the internet.
+            Building reliable, user-focused experiences with Django, React &
+            Next.js.
           </p>
 
           <motion.div
