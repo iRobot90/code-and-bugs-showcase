@@ -1,7 +1,7 @@
 import Portfolio from "./Portfolio";
 
 const Index = () => {
-  return <Portfolio />;
+    return <Portfolio />;
 };
 
 export default Index;

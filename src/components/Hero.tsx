@@ -24,6 +24,19 @@ const Hero = () => {
           className="space-y-6"
         >
           <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring" }}
+            className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl shadow-primary/10"
+          >
+            <img
+              src="/profile.jpg"
+              alt="Jesse Amiandah"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          <motion.div
             className="inline-flex items-center gap-2 text-accent font-mono text-sm mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
