@@ -31,7 +31,7 @@ const CTA = () => {
                         </span>
                     </motion.div>
 
-                    
+
 
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ const CTA = () => {
                         transition={{ delay: 0.3 }}
                         viewport={{ once: true }}
                         className="text-4xl md:text-5xl font-bold text-foreground mb-4"
-                   > 
+                    >
                         Got a project in mind?
                     </motion.h2>
 

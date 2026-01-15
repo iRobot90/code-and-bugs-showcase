@@ -62,7 +62,7 @@ const Services = () => {
             Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From breaking your application to building it stronger. I offer comprehensive testing and development services 
+            From breaking your application to building it stronger. I offer comprehensive testing and development services
             to ensure your software is robust, scalable, and user-friendly.
           </p>
         </motion.div>
@@ -84,7 +84,7 @@ const Services = () => {
                   <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
                   <p className="text-muted-foreground text-sm">{service.description}</p>
                 </div>
-                
+
                 <div className="space-y-2">
                   {service.features.map((feature) => (
                     <div key={feature} className="flex items-center gap-2">

@@ -11,6 +11,54 @@ import {
 } from "lucide-react";
 
 const Projects = () => {
+  const testsAndChallenges = [
+    {
+      name: "Team Task Management System",
+      status: "Live",
+      client: "ZNG COMPANY",
+      description:
+        "Full-stack task management web application for small teams with role-based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
+      tech: [
+        "React 18+",
+        "Django 5+",
+        "Qwik",
+        "PostgreSQL",
+        "JWT",
+        "Nginx",
+        "Gunicorn",
+      ],
+      features: [
+        "Role-Based Access Control (RBAC)",
+        "Task management with assignment and status tracking",
+        "User management and role assignment",
+        "JWT authentication",
+        "Task filtering by status and assignee",
+      ],
+      liveLink: "https://team-task-management-system-three.vercel.app/",
+      repoLink: "https://github.com/iRobot90/team-task-management-system",
+      deployment: "Nginx + Gunicorn on DigitalOcean VPS",
+    },
+    {
+      name: "PesaDB Edge - Custom RDBMS",
+      status: "In Progress",
+      challenge: "Pesapal Junior Developer Challenge",
+      description:
+        "Custom relational database management system built from scratch with SQL-like interface, CRUD operations, indexing, primary/unique keys, and JOIN support. Includes demo web application showcasing CRUD operations.",
+      tech: ["Database Systems", "SQL Parser", "REPL", "Web Demo"],
+      features: [
+        "Custom RDBMS engine with storage and indexing",
+        "SQL-like query interface with interactive REPL",
+        "CRUD operations and JOIN support",
+        "Primary and unique key constraints",
+        "Demo web application",
+      ],
+      liveLink: null,
+      repoLink: "https://github.com/iRobot90/pesadb-edge-rdbms",
+      challengeLink:
+        "https://pesapal.freshteam.com/jobs/k6mL4MNNdR7p/junior-developer-26",
+    },
+  ];
+
   const clientProjects = [
     {
       name: "AIRS",
@@ -52,54 +100,6 @@ const Projects = () => {
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#",
-    },
-  ];
-
-  const testsAndChallenges = [
-    {
-      name: "ZNG Team Task Management System",
-      status: "Live",
-      client: "ZNG COMPANY",
-      description:
-        "Full-stack task management web application for small teams with role-based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
-      tech: [
-        "React 18+",
-        "Django 5+",
-        "Django REST Framework",
-        "PostgreSQL",
-        "JWT",
-        "Nginx",
-        "Gunicorn",
-      ],
-      features: [
-        "Role-Based Access Control (RBAC)",
-        "Task management with assignment and status tracking",
-        "User management and role assignment",
-        "JWT authentication",
-        "Task filtering by status and assignee",
-      ],
-      liveLink: "https://jesse-test.zng.dk/",
-      repoLink: "https://github.com/iRobot90/team-task-management-system",
-      deployment: "Nginx + Gunicorn on DigitalOcean VPS",
-    },
-    {
-      name: "PesaDB Edge - Custom RDBMS",
-      status: "In Progress",
-      challenge: "Pesapal Junior Developer Challenge",
-      description:
-        "Custom relational database management system built from scratch with SQL-like interface, CRUD operations, indexing, primary/unique keys, and JOIN support. Includes demo web application showcasing CRUD operations.",
-      tech: ["Database Systems", "SQL Parser", "REPL", "Web Demo"],
-      features: [
-        "Custom RDBMS engine with storage and indexing",
-        "SQL-like query interface with interactive REPL",
-        "CRUD operations and JOIN support",
-        "Primary and unique key constraints",
-        "Demo web application",
-      ],
-      liveLink: null,
-      repoLink: "https://github.com/iRobot90/pesadb-edge-rdbms",
-      challengeLink:
-        "https://pesapal.freshteam.com/jobs/k6mL4MNNdR7p/junior-developer-26",
     },
   ];
 
@@ -151,155 +151,168 @@ const Projects = () => {
     isPersonal?: boolean;
     isTestChallenge?: boolean;
   }) => (
-    <GlassCard className="h-full">
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <h3 className="text-xl font-bold text-foreground mb-2">
-            {project.name}
-          </h3>
-          <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <div
-              className={`px-2 py-1 rounded-full text-xs font-mono ${
-                project.status === "Live"
-                  ? "bg-accent/20 text-accent"
-                  : "bg-primary/20 text-primary"
-              }`}
-            >
-              {project.status === "Live" ? (
-                <div className="flex items-center gap-1">
-                  <Play className="w-3 h-3" />
-                  Live
+    <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
+      {project.status === "Live" && project.liveLink && (
+        <div className="w-full h-48 overflow-hidden bg-muted relative">
+          <img
+            src={`https://api.microlink.io/?url=${encodeURIComponent(project.liveLink)}&screenshot=true&meta=false&embed=screenshot.url`}
+            alt={`${project.name} preview`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+        </div>
+      )}
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-2">
+              {project.name}
+            </h3>
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <div
+                className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === "Live"
+                    ? "bg-accent/20 text-accent"
+                    : "bg-primary/20 text-primary"
+                  }`}
+              >
+                {project.status === "Live" ? (
+                  <div className="flex items-center gap-1">
+                    <Play className="w-3 h-3" />
+                    Live
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    In Progress
+                  </div>
+                )}
+              </div>
+              {!isPersonal && project.client && (
+                <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
+                  <User className="w-3 h-3" />
+                  {project.client}
                 </div>
-              ) : (
-                <div className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  In Progress
+              )}
+              {project.challenge && (
+                <div className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-mono flex items-center gap-1">
+                  <FlaskConical className="w-3 h-3" />
+                  {project.challenge}
                 </div>
               )}
             </div>
-            {!isPersonal && project.client && (
-              <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
-                <User className="w-3 h-3" />
-                {project.client}
-              </div>
-            )}
-            {project.challenge && (
-              <div className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-mono flex items-center gap-1">
-                <FlaskConical className="w-3 h-3" />
-                {project.challenge}
-              </div>
-            )}
           </div>
         </div>
-      </div>
 
-      <p className="text-muted-foreground text-sm mb-4">
-        {project.description}
-      </p>
-
-      {project.features && (
-        <div className="mb-4">
-          <p className="text-xs font-semibold text-foreground mb-2">
-            Key Features:
-          </p>
-          <ul className="text-xs text-muted-foreground space-y-1">
-            {project.features.map((feature: string, idx: number) => (
-              <li key={idx} className="flex items-start gap-2">
-                <span className="text-accent mt-0.5">•</span>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.tech.map((tech: string) => (
-          <span
-            key={tech}
-            className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-
-      {project.deployment && (
-        <p className="text-xs text-muted-foreground mb-4">
-          <span className="font-semibold">Deployment:</span>{" "}
-          {project.deployment}
+        <p className="text-muted-foreground text-sm mb-4">
+          {project.description}
         </p>
-      )}
 
-      <div className="flex gap-3 mt-auto flex-wrap">
-        {project.liveLink && (
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-2"
-            asChild
-          >
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Live Demo
-            </a>
-          </Button>
+        {project.features && (
+          <div className="mb-4">
+            <p className="text-xs font-semibold text-foreground mb-2">
+              Key Features:
+            </p>
+            <ul className="text-xs text-muted-foreground space-y-1">
+              {project.features.map((feature: string, idx: number) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">•</span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        {project.dashboardLink && (
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-2"
-            asChild
-          >
-            <a
-              href={project.dashboardLink}
-              target="_blank"
-              rel="noopener noreferrer"
+
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tech.map((tech: string) => (
+            <span
+              key={tech}
+              className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono"
             >
-              <ExternalLink className="w-4 h-4" />
-              Dashboard
-            </a>
-          </Button>
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {project.deployment && (
+          <p className="text-xs text-muted-foreground mb-4">
+            <span className="font-semibold">Deployment:</span>{" "}
+            {project.deployment}
+          </p>
         )}
-        {project.repoLink && project.repoLink !== "#" && (
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-2"
-            asChild
-          >
-            <a
-              href={project.repoLink}
-              target="_blank"
-              rel="noopener noreferrer"
+
+        <div className="flex gap-3 mt-auto flex-wrap">
+          {project.liveLink && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2"
+              asChild
             >
-              <Github className="w-4 h-4" />
-              Code
-            </a>
-          </Button>
-        )}
-        {project.challengeLink && (
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-2"
-            asChild
-          >
-            <a
-              href={project.challengeLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Live Demo
+              </a>
+            </Button>
+          )}
+          {project.dashboardLink && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2"
+              asChild
             >
-              <ExternalLink className="w-4 h-4" />
-              Challenge Brief
-            </a>
-          </Button>
-        )}
+              <a
+                href={project.dashboardLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Dashboard
+              </a>
+            </Button>
+          )}
+          {project.repoLink && project.repoLink !== "#" && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2"
+              asChild
+            >
+              <a
+                href={project.repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-4 h-4" />
+                Code
+              </a>
+            </Button>
+          )}
+          {project.challengeLink && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2"
+              asChild
+            >
+              <a
+                href={project.challengeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Challenge Brief
+              </a>
+            </Button>
+          )}
+        </div>
       </div>
     </GlassCard>
   );
