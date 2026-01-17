@@ -29,7 +29,7 @@ const Stats = () => {
             icon: <Award className="w-8 h-8" />,
             value: 99,
             suffix: "%",
-            label: "Bug-Free Rate*",
+            label: "Bug Free Rate*",
             color: "text-purple-400"
         }
     ];

@@ -17,7 +17,7 @@ const Projects = () => {
       status: "Live",
       client: "ZNG COMPANY",
       description:
-        "Full-stack task management web application for small teams with role-based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
+        "Full stack task management web application for small teams with role based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
       tech: [
         "React 18+",
         "Django 5+",
@@ -28,7 +28,7 @@ const Projects = () => {
         "Gunicorn",
       ],
       features: [
-        "Role-Based Access Control (RBAC)",
+        "Role Based Access Control (RBAC)",
         "Task management with assignment and status tracking",
         "User management and role assignment",
         "JWT authentication",
@@ -39,11 +39,11 @@ const Projects = () => {
       deployment: "Nginx + Gunicorn on DigitalOcean VPS",
     },
     {
-      name: "PesaDB Edge - Custom RDBMS",
+      name: "PesaDB Edge: Custom RDBMS",
       status: "In Progress",
       challenge: "Pesapal Junior Developer Challenge",
       description:
-        "Custom relational database management system built from scratch with SQL-like interface, CRUD operations, indexing, primary/unique keys, and JOIN support. Includes demo web application showcasing CRUD operations.",
+        "Custom relational database management system built from scratch with SQL like interface, CRUD operations, indexing, primary/unique keys, and JOIN support. Includes demo web application showcasing CRUD operations.",
       tech: ["Database Systems", "SQL Parser", "REPL", "Web Demo"],
       features: [
         "Custom RDBMS engine with storage and indexing",
@@ -65,7 +65,7 @@ const Projects = () => {
       status: "Live",
       client: "Green World Campaign",
       description:
-        "Fintech meets eco-warriors. Use financial incentives to save the planet? You bet. Tracking impact and rewarding good vibes.",
+        "Fintech meets eco warriors. Use financial incentives to save the planet? You bet. Tracking impact and rewarding good vibes.",
       tech: ["React", "Vite", "Django"],
       liveLink: "https://airsgreenworld.com",
       dashboardLink: "https://app.airsgreenworld.com",
@@ -87,7 +87,7 @@ const Projects = () => {
       client: "Swahilipot Hub Foundation",
       description:
         "Radio for the digital age. Streaming beats and good talk directly to your device.",
-      tech: ["React+Vite", "Tailwind CSS"],
+      tech: ["React Vite", "Tailwind CSS"],
       liveLink: "https://www.swahilipotfm.co.ke",
       repoLink: "#",
     },
@@ -101,6 +101,17 @@ const Projects = () => {
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#",
     },
+    {
+      name: "GWC Kenya",
+      status: "In Progress",
+      client: "Green World Campaign",
+      description:
+        "A digital platform for Green World Campaign Kenya, focusing on regenerating landscapes and empowering communities across coastal Kenya through agroforestry and climate literacy.",
+      tech: ["React", "Vite", "Tailwind CSS"],
+      liveLink:
+        "https://escapefromsquarespace-ix3za0zf7-web-weavers-projects-59d3fe3c.vercel.app/",
+      repoLink: "#",
+    },
   ];
 
   const personalProjects = [
@@ -108,7 +119,7 @@ const Projects = () => {
       name: "Twanababyshop",
       status: "In Progress",
       description:
-        "E-commerce for the little ones. Not deployed yet, but the code is looking fresh.",
+        "Ecommerce for the little ones. Not deployed yet, but the code is looking fresh.",
       tech: ["React", "Django"],
       liveLink: "https://github.com/iRobot90/twanababyshop",
       repoLink: "https://github.com/iRobot90/twanababyshop",
@@ -117,7 +128,7 @@ const Projects = () => {
       name: "Afrikart",
       status: "In Progress",
       description:
-        "Cultural e-commerce. Connecting independent African creators with the world. Authentic goods only.",
+        "Cultural ecommerce. Connecting independent African creators with the world. Authentic goods only.",
       tech: ["TypeScript", "Supabase"],
       liveLink: null,
       repoLink: "#",
@@ -152,7 +163,7 @@ const Projects = () => {
     isTestChallenge?: boolean;
   }) => (
     <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
-      {project.status === "Live" && project.liveLink && (
+      {project.liveLink && !project.liveLink.includes("github.com") && (
         <div className="w-full h-48 overflow-hidden bg-muted relative">
           <img
             src={`https://api.microlink.io/?url=${encodeURIComponent(project.liveLink)}&screenshot=true&meta=false&embed=screenshot.url`}
@@ -173,8 +184,8 @@ const Projects = () => {
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <div
                 className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === "Live"
-                    ? "bg-accent/20 text-accent"
-                    : "bg-primary/20 text-primary"
+                  ? "bg-accent/20 text-accent"
+                  : "bg-primary/20 text-primary"
                   }`}
               >
                 {project.status === "Live" ? (
