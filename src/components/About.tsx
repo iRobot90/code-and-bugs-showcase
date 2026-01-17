@@ -95,7 +95,7 @@ const About = () => {
             . I'm a Software Developer and Frontend Engineer who crafts seamless
             experiences with Django, React, and Next.js. I have a knack for
             finding bugs before users do and believe in building things right
-            the first time—but if something breaks, I make it come back
+            the first time but if something breaks, I make it come back
             stronger.
           </p>
         </motion.div>
