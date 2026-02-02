@@ -8,6 +8,7 @@ import {
   Clock,
   User,
   FlaskConical,
+  Rocket,
 } from "lucide-react";
 
 const Projects = () => {
@@ -153,6 +154,41 @@ const Projects = () => {
     },
   ];
 
+  const startupProjects = [
+    {
+      name: "Haaafla",
+      status: "Live",
+      description:
+        "A comprehensive event management platform connecting event organizers with vendors. Features vendor booking, event creation, payment processing, and organizer verification.",
+      tech: ["Next.js", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"],
+      features: [
+        "Event creation and management",
+        "Vendor booking system with real-time availability",
+        "Integrated payment processing",
+        "Organizer verification workflow",
+        "Role-based access control",
+      ],
+      liveLink: "https://haaafla.chrisdevcode.com",
+      repoLink: "#",
+      isPrivate: true,
+    },
+    {
+      name: "HMS (Hotel Management System)",
+      status: "In Progress",
+      description:
+        "A comprehensive hotel management system for streamlining reservations, guest services, room management, and billing operations.",
+      tech: ["React", "Django", "PostgreSQL", "REST API"],
+      features: [
+        "Room reservation and availability tracking",
+        "Guest check-in/check-out management",
+        "Billing and payment processing",
+        "Staff management and role-based access",
+      ],
+      liveLink: null,
+      repoLink: "#",
+    },
+  ];
+
   const ProjectCard = ({
     project,
     isPersonal = false,
@@ -210,6 +246,11 @@ const Projects = () => {
                 <div className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-mono flex items-center gap-1">
                   <FlaskConical className="w-3 h-3" />
                   {project.challenge}
+                </div>
+              )}
+              {project.isPrivate && (
+                <div className="px-2 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-mono">
+                  Private Repo
                 </div>
               )}
             </div>
@@ -389,6 +430,33 @@ const Projects = () => {
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {clientProjects.map((project, index) => (
+              <motion.div
+                key={project.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Startup Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-2">
+            <Rocket className="w-6 h-6" />
+            Startup Projects
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {startupProjects.map((project, index) => (
               <motion.div
                 key={project.name}
                 initial={{ opacity: 0, y: 30 }}
