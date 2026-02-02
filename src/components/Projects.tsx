@@ -71,6 +71,7 @@ const Projects = () => {
       liveLink: "https://airsgreenworld.com",
       dashboardLink: "https://app.airsgreenworld.com",
       repoLink: "#",
+      isPrivate: true,
     },
     {
       name: "SPH Website",
@@ -81,6 +82,7 @@ const Projects = () => {
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#",
+      isPrivate: true,
     },
     {
       name: "SPHFM",
@@ -91,6 +93,7 @@ const Projects = () => {
       tech: ["React Vite", "Tailwind CSS"],
       liveLink: "https://www.swahilipotfm.co.ke",
       repoLink: "#",
+      isPrivate: true,
     },
     {
       name: "PIW",
@@ -101,6 +104,7 @@ const Projects = () => {
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
       repoLink: "#",
+      isPrivate: true,
     },
     {
       name: "GWC Kenya",
@@ -112,6 +116,7 @@ const Projects = () => {
       liveLink:
         "https://escapefromsquarespace-ix3za0zf7-web-weavers-projects-59d3fe3c.vercel.app/",
       repoLink: "#",
+      isPrivate: true,
     },
   ];
 
