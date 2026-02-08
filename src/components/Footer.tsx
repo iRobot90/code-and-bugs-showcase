@@ -101,10 +101,10 @@ const Footer = () => {
             className="border-t border-border/20 pt-8"
           >
             <p className="text-muted-foreground text-sm">
-              © {currentYear} Jesse Amiandah Andayi. Built with React, TypeScript, and lots of ☕
+              © 2023-{currentYear} Jesse Amiandah Andayi. Built with React, TypeScript, and lots of ☕
             </p>
             <p className="text-muted-foreground text-xs mt-1 font-mono">
-              No bugs were harmed in the making of this website... probably.
+              No bugs were harmed during this development.
             </p>
           </motion.div>
         </motion.div>
