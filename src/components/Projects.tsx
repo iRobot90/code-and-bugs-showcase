@@ -1,15 +1,40 @@
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
 import { Button } from "@/components/ui/button";
-import {
-  ExternalLink,
-  Github,
-  Play,
-  Clock,
-  User,
-  FlaskConical,
-  Rocket,
-} from "lucide-react";
+import { Coffee } from "lucide-react";
+import { useState } from "react";
+
+// small preview helper (image with fallback to live link)
+const Preview = ({ imgSrc, url, title }: { imgSrc?: string; url: string; title: string }) => {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="mb-3">
+      {imgSrc && !imgError ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} preview`}>
+          <img
+            src={imgSrc}
+            alt={`${title} preview`}
+            className="w-full h-40 object-cover rounded-md border"
+            onError={() => setImgError(true)}
+          />
+        </a>
+      ) : (
+        <div className="h-40 flex items-center justify-center rounded-md border bg-muted/5">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline"
+            aria-label={`Open ${title} Live Demo`}
+          >
+            Open {title} Live Demo
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Projects = () => {
   const testsAndChallenges = [
@@ -583,6 +608,95 @@ const Projects = () => {
             ))}
           </div>
         </motion.div>
+
+        {/* Startup Projects (Detailed) */}
+        <div className="mt-10">
+          <h3 className="text-2xl font-semibold text-foreground mb-6">Startup Projects</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Petoria */}
+            <div id="petoria" className="border rounded-md p-6 bg-transparent">
+              <h4 className="text-lg font-semibold text-foreground mb-2">
+                Petoria <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live</span>
+              </h4>
+              <p className="text-sm text-muted-foreground mb-2">
+                Production web app — product work and deployment.
+              </p>
+              <Preview imgSrc="/assets/previews/petoria.png" url="https://petoria-web.vercel.app/" title="Petoria" />
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://petoria-web.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm px-3 py-2 bg-primary text-white rounded hover:shadow-sm transition"
+                >
+                  View Petoria
+                </a>
+                <Button size="sm" variant="outline" asChild>
+                  <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Haaafla */}
+            <div id="haaafla" className="border rounded-md p-6 bg-transparent">
+              <h4 className="text-lg font-semibold text-foreground mb-1">
+                Haaafla <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live • Private Repo</span>
+              </h4>
+              <p className="text-sm text-muted-foreground mb-2">
+                Event management platform connecting organizers with vendors.
+              </p>
+              <Preview imgSrc="/assets/previews/haaafla.png" url="#haaafla" title="Haaafla" />
+              <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+                <li>Event creation & management</li>
+                <li>Vendor booking with real-time availability</li>
+                <li>Integrated payment processing</li>
+                <li>Organizer verification & role-based access</li>
+              </ul>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Next.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">TypeScript</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Supabase</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Stripe</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Tailwind CSS</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Button size="sm" className="bg-primary text-white" asChild>
+                  <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+                </Button>
+                <Button size="sm" variant="outline" asChild>
+                  <a href="#haaafla">View Haaafla</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* HMS - safe preview */}
+            <div className="border rounded-md p-6 bg-transparent">
+              <h4 className="text-lg font-semibold text-foreground mb-1">
+                HMS (Hotel Management System) <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">In Progress</span>
+              </h4>
+              <p className="text-sm text-muted-foreground mb-2">
+                Streamlining reservations, guest services, room management, and billing operations.
+              </p>
+              <div className="mb-3">
+                <div className="h-40 flex items-center justify-center rounded-md border bg-muted/5 text-sm text-muted-foreground">
+                  HMS preview coming — no live demo yet
+                </div>
+              </div>
+              <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+                <li>Room reservation & availability tracking</li>
+                <li>Guest check-in/check-out management</li>
+                <li>Billing and payment processing</li>
+                <li>Staff management & role-based access</li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">React</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Django</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">PostgreSQL</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">REST API</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
