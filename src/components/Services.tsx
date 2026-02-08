@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
-import { TestTube, Code, FileText, Zap, Shield, Rocket, Layers } from "lucide-react";
+import { TestTube, Code, FileText, Zap, Shield, Rocket, Layers, Coffee } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Services = () => {
   const services = [
@@ -99,21 +100,68 @@ const Services = () => {
         </div>
 
         {/* Startup showcase */}
-        <div className="mt-10">
+        <div className="mt-10 grid md:grid-cols-2 gap-6">
+          {/* Petoria */}
           <div className="border rounded-md p-6 bg-transparent">
-            <h4 className="text-lg font-semibold text-foreground mb-2">Startup</h4>
+            <h4 className="text-lg font-semibold text-foreground mb-2">Petoria</h4>
             <p className="text-sm text-muted-foreground mb-4">
-              Live project: production deployment and product work.
+              Production web app — product work and deployment. Live site shows UX, performance and integration work.
             </p>
-            <a
-              href="https://petoria-web.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm px-3 py-2 bg-primary text-white rounded hover:shadow-sm transition"
-              aria-label="Open Petoria web"
-            >
-              View Petoria
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://petoria-web.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm px-3 py-2 bg-primary text-white rounded hover:shadow-sm transition"
+                aria-label="Open Petoria"
+              >
+                View Petoria
+              </a>
+              <Button size="sm" variant="outline" asChild>
+                <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+              </Button>
+            </div>
+          </div>
+
+          {/* Haaafla */}
+          <div className="border rounded-md p-6 bg-transparent">
+            <h4 className="text-lg font-semibold text-foreground mb-2">Haaafla</h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              Product and platform collaboration. Open to partnerships for feature work, integrations and go-to-market support.
+            </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="#haaafla"
+                className="inline-block text-sm px-3 py-2 bg-muted/10 text-foreground rounded hover:shadow-sm transition"
+                aria-label="Haaafla details"
+              >
+                Learn more
+              </a>
+              <Button size="sm" className="bg-primary text-white" asChild>
+                <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Support startups */}
+        <div className="mt-8">
+          <div className="border rounded-md p-6 bg-transparent">
+            <h4 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
+              <Coffee className="w-5 h-5 text-primary" aria-hidden="true" />
+              Support startups
+            </h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              Help fund early-stage projects and open-source work. Small contributions keep prototypes and deployments running.
+            </p>
+            <div className="flex gap-3">
+              <Button size="sm" className="bg-primary text-white" asChild>
+                <a href="https://www.buymeacoffee.com/jesseamiandah" target="_blank" rel="noopener noreferrer">Buy me a coffee</a>
+              </Button>
+              <Button size="sm" variant="outline" asChild>
+                <a href="mailto:jesse.amianda@chrisdevcode.com">Sponsor a project</a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
