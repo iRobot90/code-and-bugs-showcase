@@ -88,6 +88,14 @@ const Hero = () => {
             >
               Let's Collaborate
             </Button>
+            <Button
+              size="lg"
+              variant="ghost"
+              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-primary"
+            >
+              View Startups (Petoria & Haaafla)
+            </Button>
           </motion.div>
         </motion.div>
 
