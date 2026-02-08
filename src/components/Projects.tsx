@@ -189,6 +189,17 @@ const Projects = () => {
     },
   ];
 
+  const projects = [
+    {
+      title: "Team Task Management System",
+      repoLink: "https://github.com/iRobot90/team-task-management-system",
+      description:
+        "Full stack task management web application for small teams with role based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
+      tech: ["React", "Django", "PostgreSQL", "REST API"],
+      liveLink: "", // add if available
+    },
+  ];
+
   const ProjectCard = ({ project, isPersonal = false }: { project: any, isPersonal?: boolean }) => (
     <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
       {project.status === 'Live' && project.liveLink && (
