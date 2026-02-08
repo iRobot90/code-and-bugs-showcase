@@ -89,6 +89,25 @@ const Hero = () => {
               Let's Collaborate
             </Button>
           </motion.div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-4">
+            <Button
+              size="lg"
+              variant="ghost"
+              onClick={() => document.getElementById("petoria")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-primary"
+            >
+              View Petoria
+            </Button>
+            <Button
+              size="lg"
+              variant="ghost"
+              onClick={() => document.getElementById("haaafla")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-primary"
+            >
+              View Haaafla
+            </Button>
+          </div>
         </motion.div>
 
         <motion.div
