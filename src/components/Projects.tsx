@@ -1,7 +1,8 @@
+import React from "react";
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
 import { Button } from "@/components/ui/button";
-import { Coffee } from "lucide-react";
+import { Coffee, Play, Clock, User, FlaskConical, ExternalLink, Github, Rocket } from "lucide-react";
 import { useState } from "react";
 
 // small preview helper (image with fallback to live link)
@@ -42,22 +43,9 @@ const Projects = () => {
       name: "Team Task Management System",
       status: "Live",
       client: "ZNG COMPANY",
-      description: "Keeps the ZNG squad sane. Assign tasks, track progress, and stop the chaos. Powered by Next.js and Django.",
-      tech: ["Next.js", "Django", "Tailwind CSS"],
-      liveLink: "https://team-task-management-system-three.vercel.app/",
-      repoLink: "https://github.com/iRobot90/team-task-management-system"
-    },
       description:
         "Full stack task management web application for small teams with role based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
-      tech: [
-        "React 18+",
-        "Django 5+",
-        "Qwik",
-        "PostgreSQL",
-        "JWT",
-        "Nginx",
-        "Gunicorn",
-      ],
+      tech: ["React 18+", "Django 5+", "Qwik", "PostgreSQL", "JWT", "Nginx", "Gunicorn"],
       features: [
         "Role Based Access Control (RBAC)",
         "Task management with assignment and status tracking",
@@ -85,8 +73,7 @@ const Projects = () => {
       ],
       liveLink: null,
       repoLink: "https://github.com/iRobot90/pesadb-edge-rdbms",
-      challengeLink:
-        "https://pesapal.freshteam.com/jobs/k6mL4MNNdR7p/junior-developer-26",
+      challengeLink: "https://pesapal.freshteam.com/jobs/k6mL4MNNdR7p/junior-developer-26",
     },
   ];
 
@@ -189,58 +176,22 @@ const Projects = () => {
     },
   ];
 
-  const ProjectCard = ({ project, isPersonal = false }: { project: any, isPersonal?: boolean }) => (
-    <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
-      {project.status === 'Live' && project.liveLink && (
-        <div className="w-full h-48 overflow-hidden bg-muted relative">
-          <img
-            src={`https://api.microlink.io/?url=${encodeURIComponent(project.liveLink)}&screenshot=true&meta=false&embed=screenshot.url`}
-            alt={`${project.name} preview`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-        </div>
-      )}
-
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
-            <div className="flex items-center gap-2 mb-2">
-              <div className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === 'Live'
-                ? 'bg-accent/20 text-accent'
-                : 'bg-primary/20 text-primary'
-                }`}>
-                {project.status === 'Live' ? (
-                  <div className="flex items-center gap-1">
-                    <Play className="w-3 h-3" />
-                    Live
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    In Progress
-                  </div>
-                )}
-              </div>
-              {!isPersonal && project.client && (
-                <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
-                  <User className="w-3 h-3" />
-                  {project.client}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
   const startupProjects = [
+    {
+      name: "Petoria",
+      status: "Live",
+      description: "Production web app — product work and deployment.",
+      tech: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"],
+      features: [],
+      liveLink: "https://petoria-web.vercel.app/",
+      repoLink: "#",
+      isPrivate: false,
+    },
     {
       name: "Haaafla",
       status: "Live",
       description:
-        "A comprehensive event management platform connecting event organizers with vendors. Features vendor booking, event creation, payment processing, and organizer verification.",
+        "Event management platform connecting organizers with vendors. Vendor booking, event creation, payments and organizer verification.",
       tech: ["Next.js", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"],
       features: [
         "Event creation and management",
@@ -267,6 +218,7 @@ const Projects = () => {
       ],
       liveLink: null,
       repoLink: "#",
+      isPrivate: false,
     },
   ];
 
@@ -295,15 +247,12 @@ const Projects = () => {
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h3 className="text-xl font-bold text-foreground mb-2">
-              {project.name}
-            </h3>
+            <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <div
-                className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === "Live"
-                  ? "bg-accent/20 text-accent"
-                  : "bg-primary/20 text-primary"
-                  }`}
+                className={`px-2 py-1 rounded-full text-xs font-mono ${
+                  project.status === "Live" ? "bg-accent/20 text-accent" : "bg-primary/20 text-primary"
+                }`}
               >
                 {project.status === "Live" ? (
                   <div className="flex items-center gap-1">
@@ -317,36 +266,33 @@ const Projects = () => {
                   </div>
                 )}
               </div>
+
               {!isPersonal && project.client && (
                 <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
                   <User className="w-3 h-3" />
                   {project.client}
                 </div>
               )}
+
               {project.challenge && (
                 <div className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-mono flex items-center gap-1">
                   <FlaskConical className="w-3 h-3" />
                   {project.challenge}
                 </div>
               )}
+
               {project.isPrivate && (
-                <div className="px-2 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-mono">
-                  Private Repo
-                </div>
+                <div className="px-2 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-mono">Private Repo</div>
               )}
             </div>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm mb-4">
-          {project.description}
-        </p>
+        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
 
-        {project.features && (
+        {project.features && project.features.length > 0 && (
           <div className="mb-4">
-            <p className="text-xs font-semibold text-foreground mb-2">
-              Key Features:
-            </p>
+            <p className="text-xs font-semibold text-foreground mb-2">Key Features:</p>
             <ul className="text-xs text-muted-foreground space-y-1">
               {project.features.map((feature: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-2">
@@ -359,21 +305,8 @@ const Projects = () => {
         )}
 
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.map((tech: string) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.map((tech: string) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono"
-            >
+          {(project.tech || []).map((tech: string) => (
+            <span key={tech} className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono">
               {tech}
             </span>
           ))}
@@ -388,6 +321,7 @@ const Projects = () => {
               </a>
             </Button>
           )}
+
           {project.dashboardLink && (
             <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
               <a href={project.dashboardLink} target="_blank" rel="noopener noreferrer">
@@ -396,88 +330,31 @@ const Projects = () => {
               </a>
             </Button>
           )}
-          <Button size="sm" variant="outline" className="flex items-center gap-2">
-            <Github className="w-4 h-4" />
-            Code
-          </Button>
-        </div>
-        {project.deployment && (
-          <p className="text-xs text-muted-foreground mb-4">
-            <span className="font-semibold">Deployment:</span>{" "}
-            {project.deployment}
-          </p>
-        )}
 
-        <div className="flex gap-3 mt-auto flex-wrap">
-          {project.liveLink && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
-            </Button>
-          )}
-          {project.dashboardLink && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              <a
-                href={project.dashboardLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Dashboard
-              </a>
-            </Button>
-          )}
           {project.repoLink && project.repoLink !== "#" && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              <a
-                href={project.repoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
+              <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4" />
                 Code
               </a>
             </Button>
           )}
+
           {project.challengeLink && (
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex items-center gap-2"
-              asChild
-            >
-              <a
-                href={project.challengeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
+              <a href={project.challengeLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4" />
                 Challenge Brief
               </a>
             </Button>
           )}
         </div>
+
+        {project.deployment && (
+          <p className="text-xs text-muted-foreground mb-4">
+            <span className="font-semibold">Deployment:</span> {project.deployment}
+          </p>
+        )}
       </div>
     </GlassCard>
   );
@@ -492,13 +369,9 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            Projects
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">Projects</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A showcase of client work, personal projects, and technical
-            challenges that demonstrate my expertise in both testing and
-            development.
+            A showcase of client work, personal projects, and technical challenges that demonstrate my expertise in both testing and development.
           </p>
         </motion.div>
 
@@ -618,9 +491,7 @@ const Projects = () => {
               <h4 className="text-lg font-semibold text-foreground mb-2">
                 Petoria <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live</span>
               </h4>
-              <p className="text-sm text-muted-foreground mb-2">
-                Production web app — product work and deployment.
-              </p>
+              <p className="text-sm text-muted-foreground mb-2">Production web app — product work and deployment.</p>
               <Preview imgSrc="/assets/previews/petoria.png" url="https://petoria-web.vercel.app/" title="Petoria" />
               <div className="flex items-center gap-3">
                 <a
@@ -645,7 +516,7 @@ const Projects = () => {
               <p className="text-sm text-muted-foreground mb-2">
                 Event management platform connecting organizers with vendors.
               </p>
-              <Preview imgSrc="/assets/previews/haaafla.png" url="#haaafla" title="Haaafla" />
+              <Preview imgSrc="/assets/previews/haaafla.png" url="https://haaafla.chrisdevcode.com" title="Haaafla" />
               <ul className="text-sm list-disc list-inside space-y-1 mb-3">
                 <li>Event creation & management</li>
                 <li>Vendor booking with real-time availability</li>
