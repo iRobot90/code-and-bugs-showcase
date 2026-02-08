@@ -300,7 +300,7 @@ const Projects = () => {
                   <span>{feature}</span>
                 </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
