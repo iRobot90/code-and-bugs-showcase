@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 const Home = () => {
     return (
@@ -22,6 +23,9 @@ const Home = () => {
 
                 {/* CTA remains near the bottom */}
                 <CTA />
+
+                {/* Footer with socials and contact */}
+                <Footer />
             </main>
         </>
     );
