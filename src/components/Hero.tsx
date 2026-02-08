@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Bug, ArrowDown } from "lucide-react";
 import ParticleBackground from "./ParticleBackground";
+import React from "react";
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -13,10 +14,8 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <ParticleBackground />
-
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+    <header className="py-20 px-6">
+      <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,10 +117,125 @@ const Hero = () => {
         >
           <ArrowDown className="w-6 h-6 text-muted-foreground animate-bounce" />
         </motion.div>
-      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
-    </section>
+        {/* Featured roles: two focused, intertwined roles */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+          <div className="border rounded-md p-6 text-left bg-transparent">
+            <h3 className="text-lg font-semibold text-foreground">Full Stack Engineer</h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              Build production web apps from frontend to backend with an emphasis on reliable, maintainable systems.
+            </p>
+            <ul className="mt-3 text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li>Next.js and React for modern frontend</li>
+              <li>Django for robust backend services</li>
+              <li>TypeScript, API design and database modelling</li>
+            </ul>
+          </div>
+
+          <div className="border rounded-md p-6 text-left bg-transparent">
+            <h3 className="text-lg font-semibold text-foreground">Data annotation and trainer platform support</h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              Hands on dataset labeling, annotation workflows and platform tooling to prepare high quality data for training and fine tuning.
+            </p>
+            <ul className="mt-3 text-sm text-muted-foreground list-disc list-inside space-y-1">
+              <li>Dataset labeling and quality assurance</li>
+              <li>Annotation workflow and tooling integration</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Startup Projects */}
+        <div className="mt-8">
+          <h3 className="text-xl font-semibold text-foreground mb-4">Startup Projects</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {/* Haaafla */}
+            <div className="border rounded-md p-6 bg-transparent">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h4 className="text-lg font-semibold text-foreground mb-1">
+                    Haaafla <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live • Private Repo</span>
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    A comprehensive event management platform connecting event organizers with vendors. Features vendor booking, event creation, payment processing, and organizer verification.
+                  </p>
+
+                  <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+                    <li>Event creation and management</li>
+                    <li>Vendor booking system with real-time availability</li>
+                    <li>Integrated payment processing</li>
+                    <li>Organizer verification workflow</li>
+                    <li>Role-based access control</li>
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Next.js</span>
+                    <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">TypeScript</span>
+                    <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Supabase</span>
+                    <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Stripe</span>
+                    <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Tailwind CSS</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Button size="sm" className="bg-primary text-white" asChild>
+                  <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+                </Button>
+                <Button size="sm" variant="outline" asChild>
+                  <a href="#haaafla">Live Demo</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Petoria */}
+            <div className="border rounded-md p-6 bg-transparent">
+              <h4 className="text-lg font-semibold text-foreground mb-1">
+                Petoria <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live</span>
+              </h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Production web app — product work and deployment. Live demo shows UX, performance and integrations.
+              </p>
+              <div className="flex items-center gap-3 mb-3">
+                <a
+                  href="https://petoria-web.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm px-3 py-2 bg-primary text-white rounded hover:shadow-sm transition"
+                >
+                  Live Demo
+                </a>
+                <Button size="sm" variant="outline" asChild>
+                  <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* HMS */}
+            <div className="border rounded-md p-6 bg-transparent">
+              <h4 className="text-lg font-semibold text-foreground mb-1">
+                HMS (Hotel Management System) <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">In Progress</span>
+              </h4>
+              <p className="text-sm text-muted-foreground mb-3">
+                Streamlining reservations, guest services, room management, and billing operations.
+              </p>
+              <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+                <li>Room reservation and availability tracking</li>
+                <li>Guest check-in/check-out management</li>
+                <li>Billing and payment processing</li>
+                <li>Staff management and role-based access</li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">React</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Django</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">PostgreSQL</span>
+                <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">REST API</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+    </header>
   );
 };
 

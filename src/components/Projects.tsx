@@ -17,6 +17,11 @@ const Projects = () => {
       name: "Team Task Management System",
       status: "Live",
       client: "ZNG COMPANY",
+      description: "Keeps the ZNG squad sane. Assign tasks, track progress, and stop the chaos. Powered by Next.js and Django.",
+      tech: ["Next.js", "Django", "Tailwind CSS"],
+      liveLink: "https://team-task-management-system-three.vercel.app/",
+      repoLink: "https://github.com/iRobot90/team-task-management-system"
+    },
       description:
         "Full stack task management web application for small teams with role based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
       tech: [
@@ -159,6 +164,52 @@ const Projects = () => {
     },
   ];
 
+  const ProjectCard = ({ project, isPersonal = false }: { project: any, isPersonal?: boolean }) => (
+    <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
+      {project.status === 'Live' && project.liveLink && (
+        <div className="w-full h-48 overflow-hidden bg-muted relative">
+          <img
+            src={`https://api.microlink.io/?url=${encodeURIComponent(project.liveLink)}&screenshot=true&meta=false&embed=screenshot.url`}
+            alt={`${project.name} preview`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+        </div>
+      )}
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
+            <div className="flex items-center gap-2 mb-2">
+              <div className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === 'Live'
+                ? 'bg-accent/20 text-accent'
+                : 'bg-primary/20 text-primary'
+                }`}>
+                {project.status === 'Live' ? (
+                  <div className="flex items-center gap-1">
+                    <Play className="w-3 h-3" />
+                    Live
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    In Progress
+                  </div>
+                )}
+              </div>
+              {!isPersonal && project.client && (
+                <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
+                  <User className="w-3 h-3" />
+                  {project.client}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
   const startupProjects = [
     {
       name: "Haaafla",
@@ -292,7 +343,39 @@ const Projects = () => {
             </span>
           ))}
         </div>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tech.map((tech: string) => (
+            <span
+              key={tech}
+              className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
 
+        <div className="flex gap-3 mt-auto">
+          {project.liveLink && (
+            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
+              <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" />
+                Live Demo
+              </a>
+            </Button>
+          )}
+          {project.dashboardLink && (
+            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
+              <a href={project.dashboardLink} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" />
+                Dashboard
+              </a>
+            </Button>
+          )}
+          <Button size="sm" variant="outline" className="flex items-center gap-2">
+            <Github className="w-4 h-4" />
+            Code
+          </Button>
+        </div>
         {project.deployment && (
           <p className="text-xs text-muted-foreground mb-4">
             <span className="font-semibold">Deployment:</span>{" "}

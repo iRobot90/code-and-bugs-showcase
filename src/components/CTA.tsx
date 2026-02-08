@@ -25,8 +25,8 @@ const CTA = () => {
                         viewport={{ once: true }}
                         className="mb-6"
                     >
-                        <span className="text-sm font-mono text-primary inline-flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-primary" />
+                        <span className="text-sm text-muted-foreground inline-flex items-center gap-2">
+                            <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
                             Available for new projects
                         </span>
                     </motion.div>
@@ -44,8 +44,8 @@ const CTA = () => {
                     </motion.h2>
 
                     {/* Subtle sparkle using Tailwind pulse, respects reduced motion */}
-                    <div className="flex justify-center mt-2 text-primary/80" aria-hidden>
-                        <Sparkles className="w-5 h-5 motion-safe:animate-pulse motion-reduce:opacity-100" />
+                    <div className="flex justify-center mt-2 text-primary/80" aria-hidden="true">
+                        <Sparkles className="w-5 h-5 motion-safe:animate-pulse motion-reduce:opacity-100" aria-hidden="true" />
                     </div>
 
                     <motion.p
@@ -53,11 +53,21 @@ const CTA = () => {
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
                         viewport={{ once: true }}
-                        className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+                        className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto"
                     >
-                        Let's turn your ideas into reality. Whether it is building from scratch or fixing what is broken, I am here to help. I offer freelance data annotation and trainer platform support. Services include dataset labeling, annotation workflows, quality assurance and platform tooling to help fine tune models.
+                        Let's turn your ideas into reality. Whether you need a new build or help improving an existing product, I can help.
                     </motion.p>
-
+                    
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.45 }}
+                        viewport={{ once: true }}
+                        className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+                    >
+                        I offer freelance data annotation and trainer platform support. Services include dataset labeling, annotation workflows, quality assurance and platform tooling to help fine tune systems.
+                    </motion.p>
+                    
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -66,12 +76,12 @@ const CTA = () => {
                         className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
                         <Button size="lg" className="bg-primary text-white hover:shadow-md transition-all duration-200 group" asChild>
-                            <a href="https://www.linkedin.com/in/jesse-amiandah/" target="_blank" rel="noreferrer">
+                            <a href="https://www.linkedin.com/in/jesse-amiandah/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
                                 Start a Conversation
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                             </a>
                         </Button>
-
+ 
                         <Button
                             size="lg"
                             variant="outline"
@@ -79,24 +89,24 @@ const CTA = () => {
                             asChild
                         >
                             <a href="mailto:jesse.amianda@chrisdevcode.com">
-                                Send Email Directly
+                                 Send Email Directly
                             </a>
                         </Button>
-                    </motion.div>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                        viewport={{ once: true }}
-                        className="text-sm text-muted-foreground mt-6 font-mono"
-                    >
-                        Usually reply within 24 hours
-                    </motion.p>
-                </motion.div>
-            </div>
-        </section>
-    );
-};
-
-export default CTA;
+                     </motion.div>
+ 
+                     <motion.p
+                         initial={{ opacity: 0 }}
+                         whileInView={{ opacity: 1 }}
+                         transition={{ delay: 0.6 }}
+                         viewport={{ once: true }}
+                         className="text-sm text-muted-foreground mt-6 font-mono"
+                     >
+                         Usually reply within 24 hours
+                     </motion.p>
+                 </motion.div>
+             </div>
+         </section>
+     );
+ };
+ 
+ export default CTA;
