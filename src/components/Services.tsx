@@ -124,73 +124,72 @@ const Services = () => {
            </div>
  
            {/* Haaafla */}
-          <div id="haaafla" className="border rounded-md p-6 bg-transparent">
-            <div className="flex items-start justify-between">
-              <div>
-                <h4 className="text-lg font-semibold text-foreground mb-1">Haaafla <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live • Private Repo</span></h4>
-                <p className="text-sm text-muted-foreground mb-3">
-                  A comprehensive event management platform connecting event organizers with vendors. Vendor booking, event creation, payments and organizer verification.
-                </p>
+           <div id="haaafla" className="border rounded-md p-6 bg-transparent">
+             <div className="flex items-start justify-between">
+               <div>
+                 <h4 className="text-lg font-semibold text-foreground mb-1">Haaafla <span className="ml-2 text-xs px-2 py-1 bg-muted/10 rounded">Live • Private Repo</span></h4>
+                 <p className="text-sm text-muted-foreground mb-3">
+                   A comprehensive event management platform connecting event organizers with vendors. Vendor booking, event creation, payments and organizer verification.
+                 </p>
 
-                <ul className="text-sm list-disc list-inside space-y-1 mb-3">
-                  <li>Event creation and management</li>
-                  <li>Vendor booking with real-time availability</li>
-                  <li>Integrated payment processing</li>
-                  <li>Organizer verification workflow & role-based access</li>
-                </ul>
+                 <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+                   <li>Event creation and management</li>
+                   <li>Vendor booking with real-time availability</li>
+                   <li>Integrated payment processing</li>
+                   <li>Organizer verification workflow & role-based access</li>
+                 </ul>
 
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Next.js</span>
-                  <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">TypeScript</span>
-                  <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Supabase</span>
-                  <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Stripe</span>
-                  <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Tailwind CSS</span>
-                </div>
-              </div>
-            </div>
+                 <div className="flex flex-wrap gap-2 mb-3">
+                   <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Next.js</span>
+                   <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">TypeScript</span>
+                   <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Supabase</span>
+                   <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Stripe</span>
+                   <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Tailwind CSS</span>
+                 </div>
+               </div>
+             </div>
 
-            <div className="flex items-center gap-3">
-              <a
-                href="#haaafla"
-                className="inline-block text-sm px-3 py-2 bg-muted/10 text-foreground rounded hover:shadow-sm transition"
-                aria-label="Haaafla details"
-              >
-                Learn more
-              </a>
-              <Button size="sm" className="bg-primary text-white" asChild>
-                <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
-              </Button>
-              <Button size="sm" variant="outline" asChild>
-                <a href="#haaafla">View Haaafla</a>
-              </Button>
-            </div>
-          </div>
+             <div className="flex items-center gap-3">
+               <a
+                 href="#haaafla"
+                 className="inline-block text-sm px-3 py-2 bg-muted/10 text-foreground rounded hover:shadow-sm transition"
+                 aria-label="Haaafla details"
+               >
+                 Learn more
+               </a>
+               <Button size="sm" className="bg-primary text-white" asChild>
+                 <a href="mailto:jesse.amianda@chrisdevcode.com">Partner with us</a>
+               </Button>
+               <Button size="sm" variant="outline" asChild>
+                 <a href="#haaafla">View Haaafla</a>
+               </Button>
+             </div>
+           </div>
          </div>
  
--        {/* Support startups */}
-+        {/* HMS + Support startups */}
-+        <div className="mt-6 grid md:grid-cols-2 gap-6">
-+          {/* HMS (Hotel Management System) */}
-+          <div className="border rounded-md p-6 bg-transparent">
-+            <h4 className="text-lg font-semibold text-foreground mb-2">HMS (Hotel Management System) <span className="text-xs px-2 py-1 bg-muted/10 rounded">In Progress</span></h4>
-+            <p className="text-sm text-muted-foreground mb-3">
-+              Streamlining reservations, guest services, room management, and billing operations.
-+            </p>
-+            <ul className="text-sm list-disc list-inside space-y-1 mb-3">
-+              <li>Room reservation & availability tracking</li>
-+              <li>Guest check-in/check-out management</li>
-+              <li>Billing and payment processing</li>
-+              <li>Staff management & role-based access</li>
-+            </ul>
-+            <div className="flex items-center gap-3">
-+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">React</span>
-+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Django</span>
-+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">PostgreSQL</span>
-+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">REST API</span>
-+            </div>
-+          </div>
-+
-+          {/* Support startups */}
+        {/* HMS + Support startups */}
+        <div className="mt-6 grid md:grid-cols-2 gap-6">
+          {/* HMS (Hotel Management System) */}
+          <div className="border rounded-md p-6 bg-transparent">
+            <h4 className="text-lg font-semibold text-foreground mb-2">HMS (Hotel Management System) <span className="text-xs px-2 py-1 bg-muted/10 rounded">In Progress</span></h4>
+            <p className="text-sm text-muted-foreground mb-3">
+              Streamlining reservations, guest services, room management, and billing operations.
+            </p>
+            <ul className="text-sm list-disc list-inside space-y-1 mb-3">
+              <li>Room reservation & availability tracking</li>
+              <li>Guest check-in/check-out management</li>
+              <li>Billing and payment processing</li>
+              <li>Staff management & role-based access</li>
+            </ul>
+            <div className="flex items-center gap-3">
+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">React</span>
+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">Django</span>
+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">PostgreSQL</span>
+              <span className="text-xs px-2 py-1 rounded bg-muted/10 text-muted-foreground">REST API</span>
+            </div>
+          </div>
+
+          {/* Support startups */}
            <div className="mt-8">
              <div className="border rounded-md p-6 bg-transparent">
                <h4 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
