@@ -192,30 +192,35 @@ const Services = () => {
                <p className="text-sm text-muted-foreground mb-4">
                  Help fund early-stage projects and open-source work. Small contributions keep prototypes and deployments running.
                </p>
- 
+
                <div className="flex flex-wrap gap-3 items-center">
                  <Button size="sm" className="bg-primary text-white" asChild>
                    <a href="https://www.buymeacoffee.com/jesseamiandah" target="_blank" rel="noopener noreferrer">Buy me a coffee</a>
                  </Button>
- 
+
                  <Button size="sm" variant="outline" asChild>
-                   <a href="https://www.paypal.com/paypalme/amiandah8" target="_blank" rel="noopener noreferrer" aria-label="Donate via PayPal">Donate via PayPal</a>
+                   <a
+                     href="https://www.paypal.com/donate?business=amiandah8%40gmail.com"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Donate via PayPal"
+                   >
+                     Donate via PayPal
+                   </a>
                  </Button>
- 
+
                  <div className="flex items-center gap-2 px-3 py-2 rounded bg-muted/5 text-sm">
                    <svg aria-hidden className="w-4 h-4 text-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                    <div className="flex flex-col">
                      <span className="text-xs text-muted-foreground">Mpesa (send to)</span>
--                    <span className="text-sm font-medium">+254 741 902 217</span>
-+                    <span className="text-sm font-medium">+254 741 902 217</span>
+                     <span className="text-sm font-medium">+254 741 902 217</span>
                    </div>
                    <a className="ml-3 text-xs text-primary underline" href="tel:+254741902217">Call / Send</a>
                  </div>
                </div>
- 
+
                <div className="mt-3 text-xs text-muted-foreground">
--                PayPal (email): <span className="font-mono">amiandah8@gmail.com</span>
-+                PayPal (email): <span className="font-mono">amiandah8@gmail.com</span>
+                 PayPal (email): <span className="font-mono">amiandah8@gmail.com</span>
                </div>
              </div>
            </div>
