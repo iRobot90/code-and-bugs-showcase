@@ -1,6 +1,7 @@
 import React from "react";
 import Projects from "@/components/Projects";
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import CTA from "@/components/CTA";
 
@@ -13,6 +14,8 @@ const Home = () => {
 
                 {/* Hero follows Projects to highlight the two featured roles */}
                 <Hero />
+
+                <Stats />
 
                 {/* Services section now emphasizes the two focused roles */}
                 <Services />

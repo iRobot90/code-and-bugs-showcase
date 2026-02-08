@@ -250,9 +250,8 @@ const Projects = () => {
             <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <div
-                className={`px-2 py-1 rounded-full text-xs font-mono ${
-                  project.status === "Live" ? "bg-accent/20 text-accent" : "bg-primary/20 text-primary"
-                }`}
+                className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === "Live" ? "bg-accent/20 text-accent" : "bg-primary/20 text-primary"
+                  }`}
               >
                 {project.status === "Live" ? (
                   <div className="flex items-center gap-1">
@@ -363,32 +362,6 @@ const Projects = () => {
     <section className="py-20 px-6" id="projects">
       <div className="max-w-6xl mx-auto">
 
-        {/* RESTORE HERO: name, photo, short bio */}
-        <div className="mb-12">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <img
-              src="/assets/me.jpg"
-              alt="Jesse Amianda"
-              className="w-32 h-32 rounded-full object-cover border"
-            />
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground">Jesse Amianda</h1>
-              <p className="mt-3 text-lg text-muted-foreground max-w-3xl">
-                Full‑stack software engineer — I build reliable web apps, APIs,
-                and systems with a focus on testing, performance and clean design.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button size="sm" asChild>
-                  <a href="#contact">Contact</a>
-                </Button>
-                <Button size="sm" variant="outline" asChild>
-                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -472,6 +445,7 @@ const Projects = () => {
             {startupProjects.map((project, index) => (
               <motion.div
                 key={project.name}
+                id={project.name.toLowerCase() === "hms (hotel management system)" ? "hms" : project.name.toLowerCase()}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
