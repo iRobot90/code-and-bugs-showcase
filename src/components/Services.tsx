@@ -97,6 +97,25 @@ const Services = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Startup showcase */}
+        <div className="mt-10">
+          <div className="border rounded-md p-6 bg-transparent">
+            <h4 className="text-lg font-semibold text-foreground mb-2">Startup</h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              Live project: production deployment and product work.
+            </p>
+            <a
+              href="https://petoria-web.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm px-3 py-2 bg-primary text-white rounded hover:shadow-sm transition"
+              aria-label="Open Petoria web"
+            >
+              View Petoria
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
