@@ -12,6 +12,11 @@ const experiences = [
       "Tested REST APIs with Postman, validated backend microservices and database integrity (PostgreSQL, MySQL, Supabase), and used pytest and Jest for automated test coverage on my own full stack projects.",
   },
   {
+    title: "Automation Workflow QA",
+    description:
+      "Configured and tested AI automation workflows translated from client discovery calls, covering conversational and automation logic across OpenClaw, Hermes, n8n, and Make.com. Validated workflow behavior and integration flows on Scale AI, ensuring discovery-call requirements mapped correctly to actual automation configuration and interaction outcomes.",
+  },
+  {
     title: "AI Data Annotation",
     description:
       "AI Trainer and Data Annotation Specialist across Micro1, Mercor, Turing, and iMerit. Annotated and validated text and video datasets for AI model training against strict SOP requirements, enforcing timestamp precision and labeling consistency.",
@@ -37,8 +42,8 @@ const QAExperience = () => {
           <h2 className="section-heading">QA & Testing Experience</h2>
           <p className="section-intro">
             Before I write code, I break it. Two years of professional QA work across
-            manual testing, exploratory testing, and AI data annotation taught me to
-            think in edge cases.
+            manual testing, exploratory testing, automation workflow QA, and AI data
+            annotation taught me to think in edge cases.
           </p>
         </motion.div>
 
