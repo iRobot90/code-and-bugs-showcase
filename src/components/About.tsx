@@ -1,32 +1,18 @@
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
-import { Code2, TestTube, Gamepad2, Mountain, Film, Bike } from "lucide-react";
+import { Code2, TestTube } from "lucide-react";
 
 const About = () => {
   const skills = [
     {
       category: "Frontend",
-      items: [
-        "Next.js",
-        "React",
-        "Tailwind CSS",
-        "Bootstrap",
-        "TypeScript",
-        "Vite",
-      ],
-      icon: <Code2 className="w-6 h-6" />,
+      items: ["Next.js", "React", "Tailwind CSS", "Bootstrap", "TypeScript", "Vite"],
+      icon: <Code2 className="w-5 h-5" />,
     },
     {
       category: "Backend",
-      items: [
-        "Python",
-        "Django",
-        "Django REST",
-        "Node.js",
-        "PostgreSQL",
-        "MySQL",
-      ],
-      icon: <Code2 className="w-6 h-6" />,
+      items: ["Python", "Django", "Django REST", "Node.js", "PostgreSQL", "MySQL"],
+      icon: <Code2 className="w-5 h-5" />,
     },
     {
       category: "Testing & QA",
@@ -35,168 +21,72 @@ const About = () => {
         "API Testing",
         "Usability Testing",
         "Performance Testing",
-        "Voice Testing",
-        "Streaming QA",
-        "Localization",
         "Regression Testing",
+        "Postman",
+        "pytest",
+        "Jest",
       ],
-      icon: <TestTube className="w-6 h-6" />,
+      icon: <TestTube className="w-5 h-5" />,
     },
-  ];
-
-  const hobbies = [
-    {
-      name: "Gaming",
-      icon: <Gamepad2 className="w-5 h-5" />,
-      description: "Major passion!",
-    },
-    {
-      name: "Cycling",
-      icon: <Bike className="w-5 h-5" />,
-      description: "Weekend adventures",
-    },
-    {
-      name: "Movies",
-      icon: <Film className="w-5 h-5" />,
-      description: "Cinema enthusiast",
-    },
-    {
-      name: "Travel",
-      icon: <Mountain className="w-5 h-5" />,
-      description: "Exploring the world (well...Mombasa)",
-    },
-  ];
-
-  const funTitles = [
-    "404 Not Found? I Found It.",
-    "Bug Hunter Extraordinaire",
-    "Code Quality Guardian",
-    "Building Reliable Software Since 2019",
   ];
 
   return (
-    <section className="py-20 px-6" id="about">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">
-            About Me
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Sup? I'm{" "}
-            <span className="text-primary font-semibold">
-              Jesse Amiandah Andayi
-            </span>
-            . I'm a Software Developer and Frontend Engineer who crafts seamless
-            experiences with Django, React, and Next.js. I have a knack for
-            finding bugs before users do and believe in building things right
-            the first time but if something breaks, I make it come back
-            stronger.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+    <>
+      <section className="section-padding" id="about">
+        <div className="section-container">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="mb-16 max-w-2xl"
           >
-            <GlassCard>
-              <h3 className="text-2xl font-bold text-primary mb-6">
-                Fun Puns & Titles
-              </h3>
-              <div className="space-y-3">
-                {funTitles.map((title, index) => (
-                  <motion.div
-                    key={title}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 group"
-                  >
-                    <div className="w-2 h-2 bg-accent rounded-full animate-pulse group-hover:scale-150 transition-transform" />
-                    <span className="text-foreground font-mono text-sm md:text-base">
-                      {title}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </GlassCard>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <GlassCard>
-              <h3 className="text-2xl font-bold text-primary mb-6">
-                Hobbies & Interests
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {hobbies.map((hobby, index) => (
-                  <motion.div
-                    key={hobby.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-center p-4 rounded-lg border border-border/20 hover:border-primary/30 hover:bg-muted/10 transition-all cursor-pointer"
-                  >
-                    <div className="text-accent mb-2 flex justify-center">
-                      {hobby.icon}
-                    </div>
-                    <h4 className="font-semibold text-foreground mb-1">
-                      {hobby.name}
-                    </h4>
-                    <p className="text-xs md:text-sm text-muted-foreground">
-                      {hobby.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </GlassCard>
+            <h2 className="section-heading">About Me</h2>
+            <p className="section-intro">
+              I'm{" "}
+              <span className="text-foreground font-medium">Jesse Amiandah Andayi</span>
+              , a Software Developer and QA Engineer who crafts seamless experiences with
+              Django, React, and Next.js. I find bugs before users do and build things
+              that hold up under pressure.
+            </p>
           </motion.div>
         </div>
+      </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-3xl font-bold text-center text-primary mb-8">
-            Technical Skills
-          </h3>
+      <section className="section-padding pt-0" id="skills">
+        <div className="section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="section-heading">Skills</h2>
+            <p className="section-intro">
+              A focused toolkit spanning frontend, backend, and quality assurance.
+            </p>
+          </motion.div>
+
           <div className="grid md:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.category}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                <GlassCard className="text-center h-full hover:border-primary/30 transition-colors">
-                  <div className="text-accent mb-4 flex justify-center">
-                    {skill.icon}
-                  </div>
-                  <h4 className="text-xl font-bold text-foreground mb-4">
+                <GlassCard className="h-full">
+                  <div className="text-muted-foreground mb-4">{skill.icon}</div>
+                  <h3 className="text-base font-semibold text-foreground mb-4">
                     {skill.category}
-                  </h4>
-                  <div className="flex flex-wrap justify-center gap-2">
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
                     {skill.items.map((item) => (
                       <span
                         key={item}
-                        className="inline-block bg-muted/30 text-foreground px-3 py-1 rounded-full text-sm font-mono hover:bg-muted/50 transition-colors"
+                        className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-md text-xs font-medium"
                       >
                         {item}
                       </span>
@@ -206,9 +96,9 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 
