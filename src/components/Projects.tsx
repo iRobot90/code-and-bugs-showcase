@@ -1,487 +1,323 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
 import { Button } from "@/components/ui/button";
-import { Coffee, Play, Clock, User, FlaskConical, ExternalLink, Github, Rocket } from "lucide-react";
-import { useState } from "react";
+import { ExternalLink, Github } from "lucide-react";
 
-// small preview helper (image with fallback to live link)
-const Preview = ({ imgSrc, url, title }: { imgSrc?: string; url: string; title: string }) => {
-  const [imgError, setImgError] = useState(false);
+type Project = {
+  name: string;
+  status: string;
+  client?: string;
+  challenge?: string;
+  description: string;
+  tech: string[];
+  liveLink?: string | null;
+  dashboardLink?: string;
+  repoLink?: string;
+  challengeLink?: string;
+  isPrivate?: boolean;
+};
+
+const getPreviewUrl = (project: Project) => {
+  if (project.liveLink && !project.liveLink.includes("github.com")) {
+    return project.liveLink;
+  }
+  if (project.dashboardLink) {
+    return project.dashboardLink;
+  }
+  return null;
+};
+
+const ProjectPreview = ({ url, title }: { url: string; title: string }) => {
+  const [error, setError] = useState(false);
+
+  if (error) return null;
 
   return (
-    <div className="mb-3">
-      {imgSrc && !imgError ? (
-        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} preview`}>
-          <img
-            src={imgSrc}
-            alt={`${title} preview`}
-            className="w-full h-40 object-cover rounded-md border"
-            onError={() => setImgError(true)}
-          />
-        </a>
-      ) : (
-        <div className="h-40 flex items-center justify-center rounded-md border bg-muted/5">
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary underline"
-            aria-label={`Open ${title} Live Demo`}
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${title} live preview`}
+      className="block w-full h-40 overflow-hidden bg-muted border-b border-border"
+    >
+      <img
+        src={`https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`}
+        alt={`${title} landing page preview`}
+        className="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
+        loading="lazy"
+        onError={() => setError(true)}
+      />
+    </a>
+  );
+};
+
+const statusStyles: Record<string, string> = {
+  Live: "bg-accent/20 text-foreground",
+  "In Progress": "bg-muted text-muted-foreground",
+  "On Pause": "bg-muted text-muted-foreground",
+};
+
+const ProjectCard = ({ project }: { project: Project }) => {
+  const previewUrl = getPreviewUrl(project);
+
+  return (
+    <GlassCard className="h-full flex flex-col p-0 overflow-hidden">
+      {previewUrl && <ProjectPreview url={previewUrl} title={project.name} />}
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <h3 className="text-base font-semibold text-foreground">{project.name}</h3>
+          <span
+            className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-md ${
+              statusStyles[project.status] ?? statusStyles["In Progress"]
+            }`}
           >
-            Open {title} Live Demo
-          </a>
+            {project.status}
+          </span>
         </div>
-      )}
-    </div>
+
+        {project.client && (
+          <p className="text-xs text-muted-foreground mb-3">{project.client}</p>
+        )}
+
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.tech.map((tech) => (
+            <span
+              key={tech}
+              className="px-2 py-0.5 bg-muted text-muted-foreground rounded text-xs"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.liveLink && (
+            <Button size="sm" variant="outline" className="h-8 text-xs border-border" asChild>
+              <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-3 h-3 mr-1" />
+                Live
+              </a>
+            </Button>
+          )}
+          {project.dashboardLink && (
+            <Button size="sm" variant="outline" className="h-8 text-xs border-border" asChild>
+              <a href={project.dashboardLink} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-3 h-3 mr-1" />
+                Dashboard
+              </a>
+            </Button>
+          )}
+          {project.repoLink && project.repoLink !== "#" && (
+            <Button size="sm" variant="outline" className="h-8 text-xs border-border" asChild>
+              <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                <Github className="w-3 h-3 mr-1" />
+                Code
+              </a>
+            </Button>
+          )}
+          {project.challengeLink && (
+            <Button size="sm" variant="outline" className="h-8 text-xs border-border" asChild>
+              <a href={project.challengeLink} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-3 h-3 mr-1" />
+                Brief
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+    </GlassCard>
   );
 };
 
 const Projects = () => {
-  const testsAndChallenges = [
+  const testsAndChallenges: Project[] = [
     {
       name: "Team Task Management System",
       status: "Live",
       client: "ZNG COMPANY",
       description:
-        "Full stack task management web application for small teams with role based access control (Admin, Manager, Member). Features task CRUD operations, user management, task assignment, status tracking, and filtering. Demonstrates clean OOP design and modern best practices.",
-      tech: ["React 18+", "Django 5+", "Qwik", "PostgreSQL", "JWT", "Nginx", "Gunicorn"],
-      features: [
-        "Role Based Access Control (RBAC)",
-        "Task management with assignment and status tracking",
-        "User management and role assignment",
-        "JWT authentication",
-        "Task filtering by status and assignee",
-      ],
+        "Full stack task management web application for small teams with role based access control. Features task CRUD, user management, and JWT authentication.",
+      tech: ["React", "Django", "PostgreSQL", "JWT"],
       liveLink: "https://team-task-management-system-three.vercel.app/",
       repoLink: "https://github.com/iRobot90/team-task-management-system",
-      deployment: "Nginx + Gunicorn on DigitalOcean VPS",
     },
     {
       name: "PesaDB Edge: Custom RDBMS",
-      status: "In Progress",
+      status: "Live",
       challenge: "Pesapal Junior Developer Challenge",
       description:
-        "Custom relational database management system built from scratch with SQL like interface, CRUD operations, indexing, primary/unique keys, and JOIN support. Includes demo web application showcasing CRUD operations.",
-      tech: ["Database Systems", "SQL Parser", "REPL", "Web Demo"],
-      features: [
-        "Custom RDBMS engine with storage and indexing",
-        "SQL-like query interface with interactive REPL",
-        "CRUD operations and JOIN support",
-        "Primary and unique key constraints",
-        "Demo web application",
-      ],
-      liveLink: null,
+        "Custom relational database management system with SQL-like interface, CRUD operations, indexing, and JOIN support. Includes a demo web application.",
+      tech: ["Database Systems", "SQL Parser", "REPL"],
       repoLink: "https://github.com/iRobot90/pesadb-edge-rdbms",
       challengeLink: "https://pesapal.freshteam.com/jobs/k6mL4MNNdR7p/junior-developer-26",
     },
   ];
 
-  const clientProjects = [
+  const clientProjects: Project[] = [
     {
       name: "AIRS",
       status: "Live",
       client: "Green World Campaign",
-      description:
-        "Fintech meets eco warriors. Use financial incentives to save the planet? You bet. Tracking impact and rewarding good vibes.",
+      description: "Fintech platform using financial incentives to track environmental impact and reward sustainable actions.",
       tech: ["React", "Vite", "Django"],
       liveLink: "https://airsgreenworld.com",
       dashboardLink: "https://app.airsgreenworld.com",
-      repoLink: "#",
       isPrivate: true,
     },
     {
       name: "SPH Website",
       status: "Live",
       client: "Swahilipot Hub Foundation",
-      description:
-        "The digital face of Swahilipot Hub. Culture, tech, and youth all in one place. It's the hub, literally.",
+      description: "The digital home of Swahilipot Hub, bringing culture, tech, and youth together in one place.",
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
-      repoLink: "#",
       isPrivate: true,
     },
     {
       name: "SPHFM",
       status: "Live",
       client: "Swahilipot Hub Foundation",
-      description:
-        "Radio for the digital age. Streaming beats and good talk directly to your device.",
-      tech: ["React Vite", "Tailwind CSS"],
+      description: "Radio streaming platform for Swahilipot FM.",
+      tech: ["React", "Tailwind CSS"],
       liveLink: "https://www.swahilipotfm.co.ke",
-      repoLink: "#",
       isPrivate: true,
     },
     {
       name: "PIW",
       status: "Live",
       client: "Swahilipot Hub Foundation",
-      description:
-        "Pwani Innovation Week's digital home. Where innovators meet, greet, and compete.",
+      description: "Pwani Innovation Week's digital platform for innovators.",
       tech: ["Next.js", "Bootstrap"],
       liveLink: "https://www.swahilipothub.co.ke",
-      repoLink: "#",
       isPrivate: true,
     },
     {
       name: "GWC Kenya",
       status: "In Progress",
       client: "Green World Campaign",
-      description:
-        "A digital platform for Green World Campaign Kenya, focusing on regenerating landscapes and empowering communities across coastal Kenya through agroforestry and climate literacy.",
+      description: "Digital platform for regenerating landscapes and empowering coastal Kenya communities.",
       tech: ["React", "Vite", "Tailwind CSS"],
-      liveLink:
-        "https://escapefromsquarespace-ix3za0zf7-web-weavers-projects-59d3fe3c.vercel.app/",
-      repoLink: "#",
+      liveLink: "https://escapefromsquarespace-ix3za0zf7-web-weavers-projects-59d3fe3c.vercel.app/",
       isPrivate: true,
     },
   ];
 
-  const personalProjects = [
-    {
-      name: "Twanababyshop",
-      status: "In Progress",
-      description:
-        "Ecommerce for the little ones. Not deployed yet, but the code is looking fresh.",
-      tech: ["React", "Django"],
-      liveLink: "https://github.com/iRobot90/twanababyshop",
-      repoLink: "https://github.com/iRobot90/twanababyshop",
-    },
-    {
-      name: "Afrikart",
-      status: "In Progress",
-      description:
-        "Cultural ecommerce. Connecting independent African creators with the world. Authentic goods only.",
-      tech: ["TypeScript", "Supabase"],
-      liveLink: null,
-      repoLink: "#",
-    },
-    {
-      name: "Rental System",
-      status: "In Progress",
-      description:
-        "For landlords who hate spreadsheets. Manage units, tenants, and payments without the headache.",
-      tech: ["Django", "Bootstrap", "SQLite", "PostgreSQL"],
-      liveLink: null,
-      repoLink: "#",
-    },
-    {
-      name: "Waste KIKI",
-      status: "In Progress",
-      description:
-        "Gamifying trash? Yes. Earn rewards for recycling. Clean streets, happy people.",
-      tech: ["Django REST API", "Vue/React", "Gamification"],
-      liveLink: null,
-      repoLink: "#",
-    },
-  ];
-
-  const startupProjects = [
+  const startupProjects: Project[] = [
     {
       name: "Petoria",
-      status: "Live",
-      description: "Production web app — product work and deployment.",
-      tech: ["Next.js", "TypeScript", "Vercel", "Tailwind CSS"],
-      features: [],
+      status: "In Progress",
+      description: "Production web app for product work and deployment.",
+      tech: ["Next.js", "TypeScript", "Vercel"],
       liveLink: "https://petoria-web.vercel.app/",
-      repoLink: "#",
-      isPrivate: false,
     },
     {
       name: "Haaafla",
       status: "Live",
-      description:
-        "Event management platform connecting organizers with vendors. Vendor booking, event creation, payments and organizer verification.",
-      tech: ["Next.js", "TypeScript", "Supabase", "Stripe", "Tailwind CSS"],
-      features: [
-        "Event creation and management",
-        "Vendor booking system with real-time availability",
-        "Integrated payment processing",
-        "Organizer verification workflow",
-        "Role-based access control",
-      ],
-      liveLink: "https://haaafla.chrisdevcode.com",
-      repoLink: "#",
+      description: "Event management platform connecting organizers with vendors, payments, and verification.",
+      tech: ["Next.js", "Supabase", "Stripe"],
+      liveLink: "https://haaafla.com/",
       isPrivate: true,
-    },
-    {
-      name: "HMS (Hotel Management System)",
-      status: "In Progress",
-      description:
-        "A comprehensive hotel management system for streamlining reservations, guest services, room management, and billing operations.",
-      tech: ["React", "Django", "PostgreSQL", "REST API"],
-      features: [
-        "Room reservation and availability tracking",
-        "Guest check-in/check-out management",
-        "Billing and payment processing",
-        "Staff management and role-based access",
-      ],
-      liveLink: null,
-      repoLink: "#",
-      isPrivate: false,
     },
   ];
 
-  const ProjectCard = ({
-    project,
-    isPersonal = false,
-    isTestChallenge = false,
-  }: {
-    project: any;
-    isPersonal?: boolean;
-    isTestChallenge?: boolean;
-  }) => (
-    <GlassCard className="h-full p-0 flex flex-col overflow-hidden group">
-      {project.liveLink && !project.liveLink.includes("github.com") && (
-        <div className="w-full h-48 overflow-hidden bg-muted relative">
-          <img
-            src={`https://api.microlink.io/?url=${encodeURIComponent(project.liveLink)}&screenshot=true&meta=false&embed=screenshot.url`}
-            alt={`${project.name} preview`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-        </div>
-      )}
+  const personalProjects: Project[] = [
+    {
+      name: "Twanababyshop",
+      status: "In Progress",
+      description: "Ecommerce platform for baby products.",
+      tech: ["React", "Django"],
+      repoLink: "https://github.com/iRobot90/twanababyshop",
+    },
+    {
+      name: "HMS / Rental System",
+      status: "On Pause",
+      description:
+        "Hotel and property rental management system for reservations, guest services, room management, and landlord billing. Same codebase, currently on pause.",
+      tech: ["React", "Django", "PostgreSQL"],
+    },
+    {
+      name: "Waste KIKI",
+      status: "In Progress",
+      description: "Gamified recycling platform with rewards for sustainable behavior.",
+      tech: ["Django REST", "Vue/React"],
+    },
+  ];
 
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h3 className="text-xl font-bold text-foreground mb-2">{project.name}</h3>
-            <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <div
-                className={`px-2 py-1 rounded-full text-xs font-mono ${project.status === "Live" ? "bg-accent/20 text-accent" : "bg-primary/20 text-primary"
-                  }`}
-              >
-                {project.status === "Live" ? (
-                  <div className="flex items-center gap-1">
-                    <Play className="w-3 h-3" />
-                    Live
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    In Progress
-                  </div>
-                )}
-              </div>
-
-              {!isPersonal && project.client && (
-                <div className="px-2 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-xs font-mono flex items-center gap-1">
-                  <User className="w-3 h-3" />
-                  {project.client}
-                </div>
-              )}
-
-              {project.challenge && (
-                <div className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-mono flex items-center gap-1">
-                  <FlaskConical className="w-3 h-3" />
-                  {project.challenge}
-                </div>
-              )}
-
-              {project.isPrivate && (
-                <div className="px-2 py-1 bg-orange-500/20 text-orange-300 rounded-full text-xs font-mono">Private Repo</div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-
-        {project.features && project.features.length > 0 && (
-          <div className="mb-4">
-            <p className="text-xs font-semibold text-foreground mb-2">Key Features:</p>
-            <ul className="text-xs text-muted-foreground space-y-1">
-              {project.features.map((feature: string, idx: number) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <span className="text-accent mt-0.5">•</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          {(project.tech || []).map((tech: string) => (
-            <span key={tech} className="px-3 py-1 bg-muted/30 text-foreground rounded-full text-xs font-mono">
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-3 mt-auto">
-          {project.liveLink && (
-            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
-              <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
-            </Button>
-          )}
-
-          {project.dashboardLink && (
-            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
-              <a href={project.dashboardLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Dashboard
-              </a>
-            </Button>
-          )}
-
-          {project.repoLink && project.repoLink !== "#" && (
-            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
-              <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4" />
-                Code
-              </a>
-            </Button>
-          )}
-
-          {project.challengeLink && (
-            <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
-              <a href={project.challengeLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-                Challenge Brief
-              </a>
-            </Button>
-          )}
-        </div>
-
-        {project.deployment && (
-          <p className="text-xs text-muted-foreground mb-4">
-            <span className="font-semibold">Deployment:</span> {project.deployment}
-          </p>
-        )}
-      </div>
-    </GlassCard>
+  const renderGrid = (
+    projects: Project[],
+    getId?: (project: Project) => string | undefined
+  ) => (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, index) => (
+        <motion.div
+          key={project.name}
+          id={getId?.(project)}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.06, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <ProjectCard project={project} />
+        </motion.div>
+      ))}
+    </div>
   );
 
   return (
-    <section className="py-20 px-6" id="projects">
-      <div className="max-w-6xl mx-auto">
-
+    <section className="section-padding" id="projects">
+      <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6">Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A showcase of client work, personal projects, and technical challenges that demonstrate my expertise in both testing and development.
+          <h2 className="section-heading">Projects</h2>
+          <p className="section-intro">
+            Client work, personal builds, and technical challenges across testing and development.
           </p>
         </motion.div>
 
-        {/* Tests & Challenges */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-2">
-            <FlaskConical className="w-6 h-6" />
-            Tests & Challenges
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {testsAndChallenges.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <ProjectCard project={project} isTestChallenge={true} />
-              </motion.div>
-            ))}
+        <div className="space-y-16">
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
+              Tests & Challenges
+            </h3>
+            {renderGrid(testsAndChallenges)}
           </div>
-        </motion.div>
 
-        {/* Client Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-2">
-            <User className="w-6 h-6" />
-            Client Projects
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {clientProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
+              Client Projects
+            </h3>
+            {renderGrid(clientProjects)}
           </div>
-        </motion.div>
 
-        {/* Startup Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-2">
-            <Rocket className="w-6 h-6" />
-            Startup Projects
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {startupProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                id={project.name.toLowerCase() === "hms (hotel management system)" ? "hms" : project.name.toLowerCase()}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
+              Startup Projects
+            </h3>
+            {renderGrid(startupProjects, (p) =>
+              p.name === "Petoria" ? "petoria" : p.name === "Haaafla" ? "haaafla" : undefined
+            )}
           </div>
-        </motion.div>
 
-        {/* Personal Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-2">
-            <Github className="w-6 h-6" />
-            Personal Projects
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {personalProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <ProjectCard project={project} isPersonal={true} />
-              </motion.div>
-            ))}
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
+              Personal Projects
+            </h3>
+            {renderGrid(personalProjects, (p) =>
+              p.name === "HMS / Rental System" ? "hms" : undefined
+            )}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

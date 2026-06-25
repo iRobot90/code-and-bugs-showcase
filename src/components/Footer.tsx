@@ -1,112 +1,65 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Instagram, Twitter, Linkedin, Mail, Bug } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     {
-      name: "Instagram",
-      icon: <Instagram className="w-5 h-5" />,
-      url: "#",
-      color: "hover:text-pink-400"
-    },
-    {
-      name: "Twitter",
-      icon: <Twitter className="w-5 h-5" />,
-      url: "#",
-      color: "hover:text-blue-400"
-    },
-    {
       name: "LinkedIn",
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: <Linkedin className="w-5 h-5" strokeWidth={1.5} />,
       url: "https://www.linkedin.com/in/jesse-amiandah/",
-      color: "hover:text-blue-600"
     },
     {
       name: "Medium",
-      icon: <span className="font-serif font-bold text-lg">M</span>,
+      icon: <span className="text-base font-serif font-bold leading-none">M</span>,
       url: "https://medium.com/@amiandah8",
-      color: "hover:text-foreground"
     },
     {
       name: "WakaTime",
-      icon: <span className="font-mono font-bold text-sm">WT</span>,
+      icon: <span className="text-xs font-mono font-bold leading-none tracking-tight">WT</span>,
       url: "https://wakatime.com/@web_weaver",
-      color: "hover:text-blue-400"
-    },
-    {
-      name: "Wonderful.dev",
-      icon: <span className="font-mono font-bold text-sm">W</span>,
-      url: "https://wonderful.dev/webweaver",
-      color: "hover:text-purple-400"
     },
     {
       name: "Email",
-      icon: <Mail className="w-5 h-5" />,
+      icon: <Mail className="w-5 h-5" strokeWidth={1.5} />,
       url: "mailto:jesse.amianda@chrisdevcode.com",
-      color: "hover:text-accent"
-    }
+    },
   ];
 
   return (
-    <footer className="py-20 px-6 border-t border-border/20" id="footer">
-      <div className="max-w-6xl mx-auto">
+    <footer className="py-16 px-6 border-t border-border" id="footer">
+      <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="mb-8">
-            <div className="inline-flex items-center gap-2 text-primary text-2xl font-bold mb-4">
-              <Bug className="w-8 h-8" />
-              <span>Developer & Tester</span>
-            </div>
-            <p className="text-lg text-muted-foreground italic mb-8">
-              "Like what you see? Let's squash some bugs together."
-            </p>
-          </div>
+          <p className="text-sm text-muted-foreground mb-8">
+            Like what you see? Let's squash some bugs together.
+          </p>
 
-          <div className="flex justify-center gap-4 mb-12">
-            {socialLinks.map((link, index) => (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className={`hover:scale-110 transition-all duration-300 ${link.color} border-border/30 hover:border-primary/50`}
-                  asChild
+          <ul className="flex justify-center items-center gap-3 mb-10 list-none p-0 m-0">
+            {socialLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
                 >
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    {link.icon}
-                  </a>
-                </Button>
-              </motion.div>
+                  {link.icon}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            viewport={{ once: true }}
-            className="border-t border-border/20 pt-8"
-          >
-            <p className="text-muted-foreground text-sm">
-              © 2023-{currentYear} Jesse Amiandah Andayi. Built with React, TypeScript, and lots of ☕
-            </p>
-            <p className="text-muted-foreground text-xs mt-1 font-mono">
-              No bugs were harmed during this development.
-            </p>
-          </motion.div>
+          <p className="text-xs text-muted-foreground">
+            © {currentYear} Jesse Amiandah Andayi
+          </p>
         </motion.div>
       </div>
     </footer>
