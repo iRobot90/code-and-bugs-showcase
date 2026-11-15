@@ -251,9 +251,6 @@ const Projects = () => {
       liveLink: "https://haaafla.com/",
       isPrivate: true,
     },
-  ];
-
-  const personalProjects: Project[] = [
     {
       name: "Twanababyshop",
       previewImage: "/project-previews/twana.jpg",
@@ -335,18 +332,10 @@ const Projects = () => {
               Startup Projects
             </h3>
             {renderGrid(startupProjects, (p) =>
-              p.name === "Petoria" ? "petoria" : p.name === "Haaafla" ? "haaafla" : p.name === "peeeechah" ? "peeeechah" : undefined
+              p.name === "Petoria" ? "petoria" : p.name === "Haaafla" ? "haaafla" : p.name === "peeeechah" ? "peeeechah" : p.name === "HMS / Rental System" ? "hms" : undefined
             )}
           </div>
 
-          <div>
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-6">
-              Personal Projects
-            </h3>
-            {renderGrid(personalProjects, (p) =>
-              p.name === "HMS / Rental System" ? "hms" : undefined
-            )}
-          </div>
         </div>
       </div>
     </section>
