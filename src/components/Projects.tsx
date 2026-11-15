@@ -16,6 +16,9 @@ type Project = {
   repoLink?: string;
   challengeLink?: string;
   isPrivate?: boolean;
+  previewImage?: string;
+  previewNote?: string;
+  liveLabel?: string;
 };
 
 const getPreviewUrl = (project: Project) => {
@@ -28,28 +31,28 @@ const getPreviewUrl = (project: Project) => {
   return null;
 };
 
-const ProjectPreview = ({ url, title }: { url: string; title: string }) => {
+const ProjectPreview = ({ project }: { project: Project }) => {
   const [error, setError] = useState(false);
-
-  if (error) return null;
-
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Open ${title} live preview`}
-      className="block w-full h-40 overflow-hidden bg-muted border-b border-border"
-    >
-      <img
-        src={`https://api.microlink.io/?url=${encodeURIComponent(url)}&screenshot=true&meta=false&embed=screenshot.url`}
-        alt={`${title} landing page preview`}
-        className="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
-        loading="lazy"
-        onError={() => setError(true)}
-      />
-    </a>
-  );
+  const url = getPreviewUrl(project);
+  const note = project.previewNote ?? (url ? "Homepage preview" : "No public demo available");
+  const content = <>
+    {project.previewImage && !error ? (
+      <img src={project.previewImage} alt={project.name + ": " + note}
+        width={1200} height={800} loading="lazy" decoding="async"
+        className="w-full h-40 object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+        onError={() => setError(true)} />
+    ) : (
+      <div className="h-40 flex flex-col items-center justify-center gap-2 px-6 text-center bg-gradient-to-br from-muted to-background">
+        <span className="text-sm font-semibold text-foreground">{project.name}</span>
+        <span className="text-xs text-muted-foreground">{url ? "Preview unavailable. Open the website below." : note}</span>
+      </div>
+    )}
+    <span className="block px-4 py-2 text-xs text-muted-foreground border-t border-border">{note}</span>
+  </>;
+  return url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={"Open " + project.name + " website"}
+      className="group block w-full overflow-hidden bg-muted border-b border-border focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">{content}</a>
+  ) : <div className="w-full overflow-hidden bg-muted border-b border-border">{content}</div>;
 };
 
 const statusStyles: Record<string, string> = {
@@ -59,11 +62,10 @@ const statusStyles: Record<string, string> = {
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
-  const previewUrl = getPreviewUrl(project);
 
   return (
     <GlassCard className="h-full flex flex-col p-0 overflow-hidden">
-      {previewUrl && <ProjectPreview url={previewUrl} title={project.name} />}
+      <ProjectPreview project={project} />
 
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex items-start justify-between gap-3 mb-3">
@@ -101,7 +103,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <Button size="sm" variant="outline" className="h-8 text-xs border-border" asChild>
               <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-3 h-3 mr-1" />
-                Live
+                {project.liveLabel ?? "Live"}
               </a>
             </Button>
           )}
@@ -139,6 +141,8 @@ const Projects = () => {
   const testsAndChallenges: Project[] = [
     {
       name: "Team Task Management System",
+      previewImage: "/project-previews/task-manager.jpg",
+      previewNote: "Public sign-in page",
       status: "Live",
       client: "ZNG COMPANY",
       description:
@@ -149,7 +153,8 @@ const Projects = () => {
     },
     {
       name: "PesaDB Edge: Custom RDBMS",
-      status: "Live",
+      status: "Local Demo",
+      previewNote: "Run locally using the repository instructions",
       challenge: "Pesapal Junior Developer Challenge",
       description:
         "Custom relational database management system with SQL-like interface, CRUD operations, indexing, and JOIN support. Includes a demo web application.",
@@ -172,6 +177,8 @@ const Projects = () => {
     },
     {
       name: "SPH Website",
+      previewImage: "/project-previews/sph.jpg",
+      previewNote: "Homepage preview",
       status: "Live",
       client: "Swahilipot Hub Foundation",
       description: "The digital home of Swahilipot Hub, bringing culture, tech, and youth together in one place.",
@@ -181,6 +188,8 @@ const Projects = () => {
     },
     {
       name: "SPHFM",
+      previewImage: "/project-previews/sphfm.jpg",
+      previewNote: "Homepage preview",
       status: "Live",
       client: "Swahilipot Hub Foundation",
       description: "Radio streaming platform for Swahilipot FM.",
@@ -190,6 +199,9 @@ const Projects = () => {
     },
     {
       name: "PIW",
+      previewImage: "/project-previews/sph.jpg",
+      previewNote: "Swahilipot Hub host website",
+      liveLabel: "Host website",
       status: "Live",
       client: "Swahilipot Hub Foundation",
       description: "Pwani Innovation Week's digital platform for innovators.",
@@ -199,25 +211,40 @@ const Projects = () => {
     },
     {
       name: "GWC Kenya",
+      previewImage: "/project-previews/gwc.jpg",
+      previewNote: "Homepage preview",
       status: "In Progress",
       client: "Green World Campaign",
       description: "Digital platform for regenerating landscapes and empowering coastal Kenya communities.",
       tech: ["React", "Vite", "Tailwind CSS"],
-      liveLink: "https://escapefromsquarespace-ix3za0zf7-web-weavers-projects-59d3fe3c.vercel.app/",
+      liveLink: "https://escapefromsquarespace.vercel.app/",
       isPrivate: true,
     },
   ];
 
   const startupProjects: Project[] = [
     {
+      name: "peeeechah",
+      status: "Live",
+      description: "Photo and video delivery for photographers, with branded client galleries, proofing, and payment tracking.",
+      tech: ["Next.js"],
+      liveLink: "https://peeeechah.com/",
+      previewImage: "/project-previews/peeeechah.jpg",
+      previewNote: "Homepage preview",
+    },
+    {
       name: "Petoria",
+      previewImage: "/project-previews/petoria.jpg",
+      previewNote: "Homepage preview",
       status: "In Progress",
-      description: "Production web app for product work and deployment.",
+      description: "Pet care platform for discovering services and products for pets.",
       tech: ["Next.js", "TypeScript", "Vercel"],
       liveLink: "https://petoria-web.vercel.app/",
     },
     {
       name: "Haaafla",
+      previewImage: "/project-previews/haaafla.jpg",
+      previewNote: "Homepage preview",
       status: "Live",
       description: "Event management platform connecting organizers with vendors, payments, and verification.",
       tech: ["Next.js", "Supabase", "Stripe"],
@@ -229,9 +256,12 @@ const Projects = () => {
   const personalProjects: Project[] = [
     {
       name: "Twanababyshop",
+      previewImage: "/project-previews/twana.jpg",
+      previewNote: "Homepage preview",
       status: "In Progress",
       description: "Ecommerce platform for baby products.",
       tech: ["React", "Django"],
+      liveLink: "https://twanababyshop.vercel.app/",
       repoLink: "https://github.com/iRobot90/twanababyshop",
     },
     {
@@ -305,7 +335,7 @@ const Projects = () => {
               Startup Projects
             </h3>
             {renderGrid(startupProjects, (p) =>
-              p.name === "Petoria" ? "petoria" : p.name === "Haaafla" ? "haaafla" : undefined
+              p.name === "Petoria" ? "petoria" : p.name === "Haaafla" ? "haaafla" : p.name === "peeeechah" ? "peeeechah" : undefined
             )}
           </div>
 
