@@ -239,7 +239,8 @@ const Projects = () => {
       status: "In Progress",
       description: "Pet care platform for discovering services and products for pets.",
       tech: ["Next.js", "TypeScript", "Vercel"],
-      liveLink: "https://petoria-web.vercel.app/",
+      liveLink: "https://petoria-web.vercel.app/about",
+      liveLabel: "View preview",
     },
     {
       name: "Haaafla",
@@ -252,13 +253,14 @@ const Projects = () => {
       isPrivate: true,
     },
     {
-      name: "Twanababyshop",
+      name: "Twaana Baby Shop",
       previewImage: "/project-previews/twana.jpg",
       previewNote: "Homepage preview",
       status: "In Progress",
       description: "Ecommerce platform for baby products.",
       tech: ["React", "Django"],
       liveLink: "https://twanababyshop.vercel.app/",
+      liveLabel: "View preview",
       repoLink: "https://github.com/iRobot90/twanababyshop",
     },
     {
